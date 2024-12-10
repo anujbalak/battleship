@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbattleship=self.webpackChunkbattleship||[]).push([[524],{173:()=>{}},s=>{s(s.s=173)}]);
