@@ -9,7 +9,9 @@
     "jest": "jest --watch",
     "deploy": "git subtree push --prefix docs origin gh-pages",
     "build": "webpack --config webpack.prod.cjs",
-    "start": "webpack serve --open --config webpack.dev.cjs"
+    "start": "webpack serve --open --config webpack.dev.cjs",
+    "eslint": "eslint src/",
+    "prettier": "prettier --write src/"
   },
   "jest": {
     "transform": {}
