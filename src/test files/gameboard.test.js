@@ -36,12 +36,27 @@ describe("Testing the ships", () => {
     ]);
   });
   test("destroyer will get a hit", () => {
-    expect(gameboard.receiveAttack([3, 0])).toBe(1);
+    expect(gameboard.receiveAttack([3, 0])).toBe(true);
   });
   test("destroyer wiil get another hit", () => {
-    expect(gameboard.receiveAttack([3, 1])).toBe(2);
+    expect(gameboard.receiveAttack([3, 1])).toBe(true);
   });
-  test("destroyer will get final hit and will sunk", () => {
-    expect(gameboard.receiveAttack([3, 2])).toBe(3);
+  test("Nothing gonna hit", () => {
+    expect(gameboard.receiveAttack([3, 4])).toBe(false);
   });
+  test('Destroyer will get another hit and will sunk', () => {
+    expect(gameboard.receiveAttack([3, 2])).toBe(true)
+  })
+  test('nothing will gonna hit', () => {
+    expect(gameboard.receiveAttack([8, 0])).toBe(false)
+  })
 });
+
+describe('Checking if all ship are sunk', () => {
+  beforeAll(() => {
+    gameboard.sunkAllShips()
+  })
+  test('Will return false', () => {
+    expect(gameboard.areAllShipSunk()).toBe(true);
+  })
+})

@@ -54,10 +54,46 @@ class Gameboard {
 
   receiveAttack(recievedCords) {
     let gotShip = false;
-    let i = 0;
-    let j = 0;
+    this.ships.forEach((ship) => {
+      if (gotShip === false) {
+        let shipCords = ship.position;
+        shipCords.forEach((cords) => {
+          if (gotShip === false) {
+            if (
+              cords[0] === recievedCords[0] &&
+              cords[1] === recievedCords[1]
+            ) {
+              gotShip = true;
+              ship.hit();
+              ship.isSunk();
+              return 
+            }
+          }
+        });
+      }
+    });
+    if (gotShip === false) {
+      this.missed.push(recievedCords);
+    }
+    return gotShip;
+  }
 
-    return this.missed.push(recievedCords);
+  areAllShipSunk() {
+    let shipsCondition = [];
+    let ships = this.ships;
+    ships.forEach(ship => {
+      let shipSunkCondition = ship.sunk;
+      shipsCondition.push(shipSunkCondition);
+    })
+    if (shipsCondition.every(condition => condition === true)) return true;
+    return false;
+  }
+
+  sunkAllShips() {
+    let ships = this.ships;
+    ships.forEach(ship => {
+      return ship.sunk = true;
+    })
   }
 }
 
@@ -77,8 +113,8 @@ function generateBoard() {
   return board;
 }
 
-let game = new Gameboard();
-game.placeShip();
-game.receiveAttack([0, 0]);
+// let game = new Gameboard();
+// game.placeShip();
+// game.receiveAttack([0, 0]);
 
 export { Gameboard, generateBoard };
