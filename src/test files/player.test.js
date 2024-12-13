@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
-import { Gameboard } from "../Js files/gameboard.mjs";
-import { Player } from "../Js files/player.mjs";
+import { Player } from "../module/player.mjs";
 
 let realPlayer = new Player();
 describe("Test for real player", () => {
@@ -35,7 +34,7 @@ describe("Test for real player", () => {
   });
 });
 
-let computer = new Gameboard();
+let computer = new Player();
 describe("Test for computer player", () => {
   beforeAll(() => {
     computer.type = "computer";

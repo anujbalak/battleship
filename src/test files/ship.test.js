@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { Ship } from "../Js files/ship.mjs";
+import { Ship } from "../module/ship.mjs";
 
 let ship = new Ship();
 ship.length = 4;

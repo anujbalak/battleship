@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { Gameboard, generateBoard } from "../Js files/gameboard.mjs";
+import { Gameboard, generateBoard } from "../module/gameboard.mjs"
 
 describe("Testing the board", () => {
   test("Board length will be 100", () => {
