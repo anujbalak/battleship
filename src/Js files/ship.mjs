@@ -11,8 +11,8 @@ class Ship {
   }
 
   isSunk() {
-    if (this.length > this.hitCount) return this.sunk = false;
-    return this.sunk = true;
+    if (this.length > this.hitCount) return (this.sunk = false);
+    return (this.sunk = true);
   }
 }
 

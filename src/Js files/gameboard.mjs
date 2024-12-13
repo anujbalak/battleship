@@ -7,7 +7,15 @@ class Gameboard {
     this.missed = [];
   }
 
-  placeShip() {
+  placeShip(length = 0, position = []) {
+    let ship = new Ship();
+    ship.length = length;
+    ship.position = position;
+    this.ships.push(ship);
+    return;
+  }
+
+  placeShipPre() {
     let carrier = new Ship();
     carrier.length = 5;
     carrier.position = [
@@ -66,7 +74,7 @@ class Gameboard {
               gotShip = true;
               ship.hit();
               ship.isSunk();
-              return 
+              return;
             }
           }
         });
@@ -81,19 +89,19 @@ class Gameboard {
   areAllShipSunk() {
     let shipsCondition = [];
     let ships = this.ships;
-    ships.forEach(ship => {
+    ships.forEach((ship) => {
       let shipSunkCondition = ship.sunk;
       shipsCondition.push(shipSunkCondition);
-    })
-    if (shipsCondition.every(condition => condition === true)) return true;
+    });
+    if (shipsCondition.every((condition) => condition === true)) return true;
     return false;
   }
 
   sunkAllShips() {
     let ships = this.ships;
-    ships.forEach(ship => {
-      return ship.sunk = true;
-    })
+    ships.forEach((ship) => {
+      return (ship.sunk = true);
+    });
   }
 }
 

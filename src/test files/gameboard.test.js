@@ -18,7 +18,7 @@ let gameboard = new Gameboard();
 describe("Testing the ships", () => {
   beforeAll(() => {
     generateBoard();
-    gameboard.placeShip();
+    gameboard.placeShipPre();
     return;
   });
   afterAll(() => {
@@ -44,19 +44,19 @@ describe("Testing the ships", () => {
   test("Nothing gonna hit", () => {
     expect(gameboard.receiveAttack([3, 4])).toBe(false);
   });
-  test('Destroyer will get another hit and will sunk', () => {
-    expect(gameboard.receiveAttack([3, 2])).toBe(true)
-  })
-  test('nothing will gonna hit', () => {
-    expect(gameboard.receiveAttack([8, 0])).toBe(false)
-  })
+  test("Destroyer will get another hit and will sunk", () => {
+    expect(gameboard.receiveAttack([3, 2])).toBe(true);
+  });
+  test("nothing will gonna hit", () => {
+    expect(gameboard.receiveAttack([8, 0])).toBe(false);
+  });
 });
 
-describe('Checking if all ship are sunk', () => {
+describe("Checking if all ship are sunk", () => {
   beforeAll(() => {
-    gameboard.sunkAllShips()
-  })
-  test('Will return false', () => {
+    gameboard.sunkAllShips();
+  });
+  test("Will return false", () => {
     expect(gameboard.areAllShipSunk()).toBe(true);
-  })
-})
+  });
+});
