@@ -1,1 +1,2 @@
-"use strict";(self.webpackChunkbattleship=self.webpackChunkbattleship||[]).push([[524],{173:()=>{}},s=>{s(s.s=173)}]);
+"use strict";(self.webpackChunkbattleship=self.webpackChunkbattleship||[]).push([[524],{630:()=>{!function(){let e=document.createElement("header"),t=document.createElement("div"),n=document.createElement("p");t.classList.add("title-container"),n.classList.add("title"),n.innerText="Battleship",document.body.appendChild(e),e.appendChild(t),t.appendChild(n);let d=document.createElement("main");document.body.appendChild(d)}()}},e=>{e(e.s=630)}]);
+//# sourceMappingURL=app.bundle.js.map
