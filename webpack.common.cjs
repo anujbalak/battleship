@@ -9,6 +9,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             title: 'BattleShip',
+            filename: 'index.html'
         }),
     ],
     output: {
