@@ -6,6 +6,8 @@ class Gameboard {
     this.ships = [];
     this.missed = [];
     this.firedSquares = []
+    this.isHit = false;
+    this.sunkShipsPosition = [];
   }
 
   placeShip(length = 0, position = []) {
@@ -74,8 +76,10 @@ class Gameboard {
                 cords[1] == recievedCords[1]
               ) {
                 gotShip = true;
+                this.isHit = true;
                 ship.hit();
                 ship.isSunk();
+                this.sunkShip(ship);
                 return;
               }
             }
@@ -83,6 +87,7 @@ class Gameboard {
         }
       });
       if (gotShip === false) {
+        this.isHit = false;
         this.missed.push(recievedCords);
       }
       this.firedSquares.push(recievedCords);
@@ -115,14 +120,20 @@ class Gameboard {
     let firedShots = this.firedSquares;
     for(let i = 0; i < firedShots.length && isShot === false; i++) {
       let currentSquare = firedShots[i];
-      if (currentSquare[0] == x &&
-        currentSquare[1] == y
-      ) {
-        console.log(isShot)
-        isShot = true;
+      if (currentSquare[0] === x && currentSquare[1]=== y) {
+        return isShot = true;
       }
     }
     return isShot;
+  }
+
+  sunkShip() {
+    let ships = this.ships;
+    ships.forEach(ship => {
+      if (ship.sunk) {
+        this.sunkShipsPosition.push(ship.position);
+      }
+    })
   }
 }
 
