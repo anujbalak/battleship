@@ -5,6 +5,7 @@ class Gameboard {
     this.board = generateBoard();
     this.ships = [];
     this.missed = [];
+    this.firedSquares = []
   }
 
   placeShip(length = 0, position = []) {
@@ -62,26 +63,29 @@ class Gameboard {
 
   receiveAttack(recievedCords) {
     let gotShip = false;
-    this.ships.forEach((ship) => {
-      if (gotShip === false) {
-        let shipCords = ship.position;
-        shipCords.forEach((cords) => {
-          if (gotShip === false) {
-            if (
-              cords[0] === recievedCords[0] &&
-              cords[1] === recievedCords[1]
-            ) {
-              gotShip = true;
-              ship.hit();
-              ship.isSunk();
-              return;
+    if (!this.isAlreadyFired(recievedCords)) {
+      this.ships.forEach((ship) => {
+        if (gotShip === false) {
+          let shipCords = ship.position;
+          shipCords.forEach((cords) => {
+            if (gotShip === false) {
+              if (
+                cords[0] == recievedCords[0] &&
+                cords[1] == recievedCords[1]
+              ) {
+                gotShip = true;
+                ship.hit();
+                ship.isSunk();
+                return;
+              }
             }
-          }
-        });
+          });
+        }
+      });
+      if (gotShip === false) {
+        this.missed.push(recievedCords);
       }
-    });
-    if (gotShip === false) {
-      this.missed.push(recievedCords);
+      this.firedSquares.push(recievedCords);
     }
     return gotShip;
   }
@@ -102,6 +106,23 @@ class Gameboard {
     ships.forEach((ship) => {
       return (ship.sunk = true);
     });
+  }
+
+  isAlreadyFired(receiveCords) {
+    let x = receiveCords[0];
+    let y = receiveCords[1];
+    let isShot = false;
+    let firedShots = this.firedSquares;
+    for(let i = 0; i < firedShots.length && isShot === false; i++) {
+      let currentSquare = firedShots[i];
+      if (currentSquare[0] == x &&
+        currentSquare[1] == y
+      ) {
+        console.log(isShot)
+        isShot = true;
+      }
+    }
+    return isShot;
   }
 }
 
