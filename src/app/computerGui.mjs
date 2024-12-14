@@ -1,7 +1,7 @@
 import { Player } from "../module/player.mjs";
 
+const computerPlayer = new Player()
 function computerGui() {
-    let computerPlayer = new Player();
     computerPlayer.name = 'Computer';
     computerPlayer.type = 'computer';
 
@@ -59,4 +59,4 @@ function computerGui() {
     renderShips(computerPlayer.gameboard.ships)
 }
 
-export { computerGui }
+export { computerGui, computerPlayer}
