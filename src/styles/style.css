@@ -1,8 +1,30 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@300..700&family=Noto+Sans+Symbols+2&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+.noto-emoji{
+    font-family: "Jost", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+/* noto-emoji-emoji-wght-normal */
+/* @font-face {
+    font-family: 'Noto Emoji Variable';
+    font-style: normal;
+    font-display: auto;
+    font-weight: 300 700;
+    src: url(@fontsource-variable/files/noto-emoji-emoji-wght-normal.woff2) format('woff2-variations');
+  } */
 
 :root {
     --r: 40;
@@ -10,6 +32,8 @@
     --b: 66;
     --text-color: 245, 230, 250;
     --accent-color: 203, 166, 247;
+    --dark-color: 30, 30, 45;
+    --ship--color: 115, 87, 184
 }
 
 body {
@@ -44,6 +68,51 @@ header .title-container .title {
 
 main {
     width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr minmax(200px 1fr);
+    justify-items: center;
+}
+
+main div.player-lobby{
+    margin: 10px;
+    display: grid;
+    grid-template-rows: 30px 1fr;
+    max-width: max-content;
+    justify-content: center;
+}
+main div div.player-name-container {
+    justify-content: center;
+}
+
+main div div.player-name-container p.player-name {
+    font-size: 1.2rem;
+}
+
+main div div.real-board, main div div.computer-board {
+    background-color: rgb(var(--dark-color));
+    display: grid;
+    grid-template-columns: repeat(10, 2.7em);
+    grid-template-rows: repeat(10, 2.7em);
+    justify-content: center;
+    border-left: 1px rgb(var(--accent-color)) solid;
+    border-top: 1px rgb(var(--accent-color)) solid;
+}
+
+main div div.real-board span.cell, main div div.computer-board span.cell {
+    padding: 3px;
+    border-right: 1px rgb(var(--accent-color)) solid;
+    border-bottom: 1px rgb(var(--accent-color)) solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+span.ship-square {
+    font-family: 'Noto Emoji', sans-serif;
+    background-color: rgb(var(--ship--color));
+    font-family: "Noto Emoji", serif;
+    font-weight: 700;
 }
 
 /* ----------footer--------- */
@@ -51,10 +120,12 @@ footer.footer {
     width: 100%;
     position: absolute;
     bottom: 10px;
-    gap: 10px;
-    font-size: 1.2rem;
+    gap: 7px;
+    font-size: 1.1rem;
     justify-content: center;
     align-items: center;
+    border-top: 1px rgb(var(--accent-color)) solid;
+    padding-top: 10px;
 }
 
 p.credit {
