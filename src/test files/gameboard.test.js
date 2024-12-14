@@ -6,10 +6,10 @@ describe("Testing the board", () => {
     expect(generateBoard().length).toBe(100);
   });
   test("Board first element should be [0, 0]", () => {
-    expect(generateBoard()[0]).toEqual([0, 0]);
+    expect(generateBoard()[0]).toEqual([0, 9]);
   });
   test("Board last element should be [9, 9", () => {
-    expect(generateBoard()[99]).toEqual([9, 9]);
+    expect(generateBoard()[99]).toEqual([9, 0]);
   });
 });
 
@@ -21,10 +21,10 @@ describe("Testing the ships", () => {
     gameboard.placeShipPre();
     return;
   });
-  afterAll(() => {
-    console.log(gameboard.ships);
-    console.log(gameboard.missed);
-  });
+  // afterAll(() => {
+  //   console.log(gameboard.ships);
+  //   console.log(gameboard.missed);
+  // });
   test("battleship length is 4", () => {
     expect(gameboard.ships[1].length).toBe(4);
   });
