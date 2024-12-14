@@ -1,3 +1,4 @@
+
 function home() {
         ///////////header
     let header = document.createElement("header");
@@ -16,7 +17,6 @@ function home() {
 
     /////content body
     let content = document.createElement('main');
-    
     document.body.appendChild(content)
 
     ///footer
@@ -28,7 +28,7 @@ function home() {
     credit.classList.add('credit');
     creditLink.classList.add('credit-link');
 
-    credit.innerText = 'Made by '
+    credit.innerText = 'Made by'
     creditLink.href = "https://github.com/anujbalak";
     creditLink.target = '_blank'
     creditLink.innerText = 'Anuj'
