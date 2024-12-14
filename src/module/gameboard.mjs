@@ -54,8 +54,8 @@ class Gameboard {
     let patrolBoat = new Ship();
     patrolBoat.length = 2;
     patrolBoat.position = [
-      [7, 1],
-      [7, 2],
+      [7, 4],
+      [7, 5],
     ];
     this.ships.push(carrier, battleship, destroyer, submarine, patrolBoat);
   }
@@ -106,16 +106,17 @@ class Gameboard {
 }
 
 function generateBoard() {
-  let n = 10;
+  let n = 0;
+  let k = 10;
   let x = 0;
-  let y = 0;
+  let y = 9;
   let board = [];
-  while (y < n) {
-    while (x < n) {
+  while (y >= n) {
+    while (x < k ) {
       board.push([x, y]);
       x++;
     }
-    y++;
+    y--;
     x = 0;
   }
   return board;
