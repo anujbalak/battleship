@@ -95,6 +95,8 @@ function runScoreAnimation(scoreNode, changeInScore, bonusScore) {
     } else if (changeInScore === 5) {
         scoreChangeText = `-${changeInScore}`
         scoreNode.setAttribute('id', 'score-decrease')
+    } else if (changeInScore === 0) {
+        scoreChangeText = changeInScore
     }
     if (bonusScore === 100) {
         scoreChangeText = `+${changeInScore + bonusScore}`

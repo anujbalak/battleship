@@ -97,6 +97,8 @@ class Gameboard {
         if (this.score > 0) {
           this.changeInScore = 5;
           this.score -= 5;
+        } else {
+          this.changeInScore = 0
         }
         this.missed.push(recievedCords);
       }
