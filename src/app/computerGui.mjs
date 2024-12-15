@@ -50,13 +50,56 @@ function computerGui() {
             shipLocation.forEach(shipCords => {
                 let shipSquare = document.querySelector(`div.computer-board span[value='${shipCords}']`);
                 shipSquare.classList.add("ship-square")
-                shipSquare.innerText = '🚩'
+                shipSquare.innerText = ''
             })
         })
     }
 
     computerPlayer.gameboard.placeShipPre()
     renderShips(computerPlayer.gameboard.ships)
+    renderScore();
 }
 
-export { computerGui, computerPlayer}
+function renderScore(score = 0) {
+
+    let scoreContainer = document.createElement('div');
+    let scoreText = document.createElement('p');
+    let playerNameNode = document.createElement('p');
+
+    scoreContainer.classList.add('score-container');
+    scoreText.classList.add('score-text');
+    playerNameNode.classList.add('player-name-node');
+    let playerLobby = document.querySelector('main>div.player-lobby+div');
+    playerNameNode.innerText = `Score:`;
+    scoreText.innerText = score;
+    scoreContainer.appendChild(playerNameNode)
+    scoreContainer.appendChild(scoreText);
+    playerLobby.appendChild(scoreContainer);
+}
+
+function refreshScore(score, changeInScore, bonusScore) {
+    let scoreNode = document.querySelector('main>div+div div.score-container p.score-text');
+    runScoreAnimation(scoreNode, changeInScore, bonusScore);
+    setTimeout(() => {
+        scoreNode.innerText = score;
+        scoreNode.setAttribute('id', '')
+    }, 500);
+}
+
+function runScoreAnimation(scoreNode, changeInScore, bonusScore) {
+    let scoreChangeText = ``;
+    if (changeInScore === 50) {
+        scoreChangeText = `+${changeInScore}`
+        scoreNode.setAttribute('id', 'score-increase')
+    } else if (changeInScore === 5) {
+        scoreChangeText = `-${changeInScore}`
+        scoreNode.setAttribute('id', 'score-decrease')
+    }
+    if (bonusScore === 100) {
+        scoreChangeText = `+${changeInScore + bonusScore}`
+        scoreNode.setAttribute('id', 'score-bonus')
+    }
+    scoreNode.innerText = scoreChangeText;
+}
+
+export { computerGui, computerPlayer, refreshScore}
