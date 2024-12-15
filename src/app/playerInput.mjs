@@ -1,6 +1,7 @@
-import { computerGui, computerPlayer} from "./computerGui.mjs";
+import { computerPlayer} from "./computerGui.mjs";
+import { refreshScore } from "./playerGui.mjs";
 
-function battle() {
+function playerInput() {
     let playerBoard = document.querySelectorAll('div.real-board span.cell')
     let computerBoard = document.querySelectorAll('div.computer-board span.cell');
 
@@ -10,11 +11,15 @@ function battle() {
         
         square.addEventListener('click',() => {
             if (!isGameFinished) {
-            let recievedCords = square.getAttribute('value');
-            let cords = makeArrayOfCords(recievedCords);
-            hitShip(cords);
-            styleHitSquare(square);
-            styleSunkShip();
+                let recievedCords = square.getAttribute('value');
+                let cords = makeArrayOfCords(recievedCords);
+                if (!computerPlayer.gameboard.isAlreadyFired(cords)) {
+                    hitShip(cords);
+                    styleHitSquare(square);
+                    styleSunkShip();
+                    refreshScore(computerPlayer.gameboard.score, computerPlayer.gameboard.changeInScore, computerPlayer.gameboard.scoreBonus);
+                    computerPlayer.gameboard.scoreBonus = 0
+                }
             }
         }) 
         
@@ -61,4 +66,4 @@ function battle() {
 
 }
 
-export { battle }
+export { playerInput }
