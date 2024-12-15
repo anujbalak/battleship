@@ -3,13 +3,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 
-.noto-emoji{
-    font-family: "Jost", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-}
-
 
 * {
     margin: 0;
@@ -41,7 +34,13 @@
     --accent-color: 203, 166, 247;
     --dark-color: 30, 30, 45;
     --ship--color: 115, 87, 184;
-    --hover-color: 86, 86, 142
+    --hover-color: 86, 86, 142;
+    --hit-ship-color: 83, 62, 132;
+    --sunk-ship: 50, 38, 81;
+    --score-text: 159, 120, 255;
+    --score-increase: 125, 255, 199;
+    --score-decrease: 255, 125, 125;
+    --score-bonus: 255, 198, 125;
 }
 
 body {
@@ -49,6 +48,7 @@ body {
     background-color: rgb(var(--r), var(--g), var(--b));
     display: grid;
     grid-template-rows: 80px 1fr 50px;
+    font-family: "Jost", sans-serif;
 }
 
 a {
@@ -85,7 +85,7 @@ main {
 main div.player-lobby{
     margin: 10px;
     display: grid;
-    grid-template-rows: 30px 1fr;
+    grid-template-rows: 30px 1fr 40px;
     max-width: max-content;
     justify-content: center;
 }
@@ -96,6 +96,8 @@ main div div.player-name-container {
 main div div.player-name-container p.player-name {
     font-size: 1.2rem;
 }
+
+
 
 main div div.real-board, main div div.computer-board {
     background-color: rgb(var(--dark-color));
@@ -116,17 +118,50 @@ main div div.real-board span.cell, main div div.computer-board span.cell {
     align-items: center;
 }
 
-span.ship-square {
+div.real-board span.ship-square {
     font-size: 1.5rem;
     font-family: 'Noto Emoji', sans-serif;
     background-color: rgb(var(--ship--color));
     font-family: "Noto Emoji", serif;
     font-weight: 700;
+    color: #eee;
 }
 
 main div div.computer-board span.cell:hover, main div div.computer-board span.cell:focus {
     cursor: pointer;
     background-color: rgb(var(--hover-color));
+}
+
+div.score-container {
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    margin-bottom: 20px;
+}
+div.score-container p.player-name-node {
+    font-size: 1.1rem;
+    justify-self: end;
+}
+div.score-container p.score-text {
+    justify-self: start;
+    font-size: 2rem;
+    color: rgb(var(--score-text));
+}
+
+div.score-container p#score-increase {
+    color: rgb(var(--score-increase));
+}
+
+div.score-container p#score-decrease {
+    color: rgb(var(--score-decrease));
+}
+
+div.score-container p#score-bonus {
+    color: rgb(var(--score-bonus));
 }
 
 /* ----------ships-------------- */
@@ -138,8 +173,13 @@ div.computer-board span.missed {
 
 div.computer-board span.hit-ship {
     font-size: 1.8rem;
+    background-color: rgb(var(--hit-ship-color));
 }
 
+div.computer-board span.part-of-sunk-ship {
+    background-color: rgb(var(--sunk-ship));
+    color: #f53e48;
+}
 /* ----------footer--------- */
 footer.footer {
     width: 100%;
@@ -151,5 +191,6 @@ footer.footer {
     align-items: center;
     border-top: 1px rgb(var(--accent-color)) solid;
     padding-top: 10px;
+    max-height: 30px;
 }
 
