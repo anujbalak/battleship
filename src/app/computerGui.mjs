@@ -1,4 +1,5 @@
 import { Player } from "../module/player.mjs";
+import { renderPlayerScore } from "./playerGui.mjs";
 
 const computerPlayer = new Player()
 function computerGui() {
@@ -43,21 +44,31 @@ function computerGui() {
 
     const MAIN_AREA = document.querySelector('main');
     MAIN_AREA.appendChild(playerLobby)
+    renderPlayerScore(playerLobby);
 
-    function renderShips(ships) {
-        ships.forEach(ship => {
-            let shipLocation = ship.position;
-            shipLocation.forEach(shipCords => {
-                let shipSquare = document.querySelector(`div.computer-board span[value='${shipCords}']`);
-                shipSquare.classList.add("ship-square")
-                shipSquare.innerText = ''
-            })
-        })
-    }
-
-    computerPlayer.gameboard.placeShipPre()
+    
+    generateShips()
     renderShips(computerPlayer.gameboard.ships)
     renderScore();
+}
+
+function renderShips(ships) {
+    ships.forEach(ship => {
+        let shipLocation = ship.position;
+        shipLocation.forEach(shipCords => {
+            let shipSquare = document.querySelector(`div.computer-board span[value='${shipCords}']`);
+            shipSquare.classList.add("ship-square")
+            shipSquare.innerText = shipCords
+        })
+    })
+}
+
+function generateShips() {
+    computerPlayer.gameboard.placeShip(5)
+    computerPlayer.gameboard.placeShip(4)
+    computerPlayer.gameboard.placeShip(3)
+    computerPlayer.gameboard.placeShip(3)
+    computerPlayer.gameboard.placeShip(2)
 }
 
 function renderScore(score = 0) {
@@ -69,8 +80,8 @@ function renderScore(score = 0) {
     scoreContainer.classList.add('score-container');
     scoreText.classList.add('score-text');
     playerNameNode.classList.add('player-name-node');
-    let playerLobby = document.querySelector('main>div.player-lobby+div');
-    playerNameNode.innerText = `Score:`;
+    let playerLobby = document.querySelector('main>div.player-lobby');
+    playerNameNode.innerText = `Computer Score:`;
     scoreText.innerText = score;
     scoreContainer.appendChild(playerNameNode)
     scoreContainer.appendChild(scoreText);
@@ -78,7 +89,7 @@ function renderScore(score = 0) {
 }
 
 function refreshScore(score, changeInScore, bonusScore) {
-    let scoreNode = document.querySelector('main>div+div div.score-container p.score-text');
+    let scoreNode = document.querySelector('main>div div.score-container p.score-text');
     runScoreAnimation(scoreNode, changeInScore, bonusScore);
     setTimeout(() => {
         scoreNode.innerText = score;

@@ -2,12 +2,16 @@ import { computerPlayer} from "./computerGui.mjs";
 import { refreshScore } from "./playerGui.mjs";
 
 
+function isPlayerTurn(bool = true) {
+    return playerTurn = bool;
+}
+let playerTurn = true;
+let isGameFinished = false;
 function playerRun() {
-    let isGameFinished = false;
     let computerBoard = document.querySelectorAll('div.computer-board span.cell');
     computerBoard.forEach(square => {
         square.addEventListener('click',() => {
-            if (!isGameFinished) {
+            if (!isGameFinished && playerTurn) {
                 let recievedCords = square.getAttribute('value');
                 let cords = makeArrayOfCords(recievedCords);
                 if (!computerPlayer.gameboard.isAlreadyFired(cords)) {
@@ -15,7 +19,8 @@ function playerRun() {
                     styleHitSquare(square);
                     styleSunkShip();
                     refreshScore(computerPlayer.gameboard.score, computerPlayer.gameboard.changeInScore, computerPlayer.gameboard.scoreBonus);
-                    computerPlayer.gameboard.scoreBonus = 0
+                    computerPlayer.gameboard.scoreBonus = 0;
+                    isPlayerTurn(false);
                 }
             }
         })   
@@ -47,7 +52,6 @@ function styleSunkShip() {
         shipPosition.forEach(cords => {
             let square = document.querySelector(`div.computer-board span[value='${cords}']`);
             square.classList.add('part-of-sunk-ship')
-            console.log(square);
             square.innerText = '☠'
         })
         computerPlayer.gameboard.totalSunkShips += 1;
@@ -61,4 +65,4 @@ function makeArrayOfCords(cordsString) {
     return [x, y]
 }
 
-export { playerRun }
+export { playerRun, isPlayerTurn}

@@ -1,4 +1,5 @@
 import { Player } from "../module/player.mjs";
+import { computerRun } from "./computerInput.mjs";
 
 let realPlayer = new Player();
 function playerGui() {
@@ -57,12 +58,11 @@ function playerGui() {
 
     realPlayer.gameboard.placeShipPre()
     renderShips(realPlayer.gameboard.ships)
-    renderPlayerScore()
 
 }
 
-function renderPlayerScore(score = 0) {
-
+function renderPlayerScore(playerLobby) {
+    let score = 0;
     let scoreContainer = document.createElement('div');
     let scoreText = document.createElement('p');
     let playerNameNode = document.createElement('p');
@@ -70,8 +70,8 @@ function renderPlayerScore(score = 0) {
     scoreContainer.classList.add('score-container');
     scoreText.classList.add('score-text');
     playerNameNode.classList.add('player-name-node');
-    let playerLobby = document.querySelector('main>div.player-lobby');
-    playerNameNode.innerText = `Score:`;
+    // let playerLobby = document.querySelector('main div.player-lobby+div');
+    playerNameNode.innerText = `Your Score:`;
     scoreText.innerText = score;
     scoreContainer.appendChild(playerNameNode)
     scoreContainer.appendChild(scoreText);
@@ -79,12 +79,15 @@ function renderPlayerScore(score = 0) {
 }
 
 function refreshScore(score, changeInScore, bonusScore) {
-    let scoreNode = document.querySelector('main div div.score-container p.score-text');
+    let scoreNode = document.querySelector('main div+div div.score-container p.score-text');
     runScoreAnimation(scoreNode, changeInScore, bonusScore);
     setTimeout(() => {
         scoreNode.innerText = score;
         scoreNode.setAttribute('id', '')
+        computerRun();
     }, 500);
+
+
 }
 
 function runScoreAnimation(scoreNode, changeInScore, bonusScore) {
@@ -105,4 +108,4 @@ function runScoreAnimation(scoreNode, changeInScore, bonusScore) {
     scoreNode.innerText = scoreChangeText;
 }
 
-export {playerGui, refreshScore, realPlayer}
+export {playerGui, refreshScore, realPlayer, renderPlayerScore}
