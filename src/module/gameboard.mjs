@@ -14,14 +14,123 @@ class Gameboard {
     this.scoreBonus = 0
   }
 
-  placeShip(length = 0, position = []) {
+  placeShip(length = 0) {
     let ship = new Ship();
     ship.length = length;
-    ship.position = position;
+    ship.position = this.generateShipPosition(length);
     this.ships.push(ship);
     return;
   }
 
+
+
+  isAlreadyGenerated(receiveCords) {
+    let x = receiveCords[0];
+    let y = receiveCords[1];
+    let isPlaced = false;
+    let generatedShipCords = []
+
+    this.ships.forEach(ship => {
+      ship.position.forEach(cords => {
+        generatedShipCords.push(cords);
+      })
+    })
+    for(let i = 0; i < generatedShipCords.length && isPlaced === false; i++) {
+      let currentSquare = generatedShipCords[i];
+      if (currentSquare[0] === x && currentSquare[1]=== y) {
+        return isPlaced = true;
+      }
+    }
+    return isPlaced;
+  }
+
+
+
+  generateShipPosition(lengthOfShip) { 
+    let position = []
+
+    const generateX = () => {
+      return Math.floor(Math.random() * 10);
+    }
+
+    const generateY = () => {
+      return Math.floor(Math.random() * 10);
+    }
+
+    const generateSubtractor = () => {
+      return Math.floor((Math.random() * 5) + 1);
+    }
+    /// H => 0, V => 1;
+    const generateShipDirection = () => {
+      return Math.floor(Math.random() * 2);
+    }
+
+    let generatedX = generateX() ;
+    let generatedY = generateY();
+    let direction = generateShipDirection();
+
+    const getXorY = (generatedNumber) => {
+      let a = generatedNumber - (generatedNumber - ((10 - lengthOfShip) - generateSubtractor()));
+      return a;
+    }
+
+    const generateCords = (direction, lengthOfShip) => {
+      let x = null;
+      let y = null;
+      if (direction === 0) {
+        if (generatedX > 5) {
+          x = getXorY(generatedX);
+        } else {
+          x = generatedX
+        }
+        y = generatedY;
+        return generatePosition(x, y, direction, lengthOfShip)
+      } else if (direction === 1) {
+        if (generatedY > 5) {
+          y = getXorY(generatedY);
+        } else {
+          y = generatedY
+        }
+        x = generatedX;
+        return generatePosition(x, y, direction, lengthOfShip);
+      }
+    }
+    
+    const generatePosition = (x, y, direction, length) => {
+      let cord = [x, y];
+      let i = length - 1;
+      position.push(cord);
+      while (i > 0) {
+        if (direction === 0) {
+          cord = [x + length - i, y];
+          position.push(cord)
+        } else if (direction === 1) {
+          cord = [x, y + length - i];
+          position.push(cord)
+        }
+        i--;
+      };
+      return position;
+    }
+    let isGenerated = false;
+    generateCords(direction, lengthOfShip)
+    if (lengthOfShip === 5) return position;
+    if (lengthOfShip < 5) {
+      for (let i = 0; i < position.length && isGenerated === false; i++) {
+        let cords = position[i];
+        if (this.isAlreadyGenerated(cords)) {
+          isGenerated = true;
+        }
+      }
+    }
+    if (isGenerated) {
+      return this.generateShipPosition(lengthOfShip);
+    } else {
+      return position
+    }
+  }
+
+  
   placeShipPre() {
     let carrier = new Ship();
     carrier.length = 5;
