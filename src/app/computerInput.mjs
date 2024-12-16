@@ -1,5 +1,5 @@
 import { realPlayer } from "./playerGui.mjs";
-import { computerPlayer, refreshScore } from "./computerGui.mjs";
+import { refreshScore } from "./computerGui.mjs";
 import { isPlayerTurn } from "./playerInput.mjs";
 
 
