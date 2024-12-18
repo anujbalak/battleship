@@ -3,22 +3,34 @@ import { computerRun } from "./computerInput.mjs";
 
 let realPlayer = new Player();
 function playerGui() {
-    realPlayer.name = 'Anuj';
     realPlayer.type = 'real';
 
     let playerLobby = document.createElement('div');
     playerLobby.classList.add('player-lobby');
 
-    function renderPlayerName(name) {
+    function renderPlayerName() {
         let playerNameContainer = document.createElement('div');
-        let playerName = document.createElement("p");
+        let playerNameInput = document.createElement("input");
         playerNameContainer.classList.add("player-name-container", "flex-container");
-        playerName.classList.add('player-name', "text");
-
-        playerName.innerText = `${name}'s Board`;
-        playerNameContainer.appendChild(playerName);
+        playerNameInput.placeholder = 'Enter your name here'
+        realPlayer.name = playerNameInput.value;
+        playerNameInput.autofocus
+        playerNameInput.addEventListener('keyup', (event) => {
+            if (event.keyCode === 13 || event.code === 13) {
+                playerNameInput.blur();
+                realPlayer.name = playerNameInput.value;
+                const playerName = document.querySelector('p');
+                playerName.classList.add('player-name', "text");
+                playerName.textContent = `${realPlayer.name}'s Board`;
+                localStorage.setItem('playerName', realPlayer.name);
+                playerNameInput.style.display = 'none'
+                playerNameContainer.appendChild(playerName)
+            }
+        })
+        playerNameContainer.appendChild(playerNameInput);
         return playerNameContainer;
     }
+
 
     function renderPlayerBoard(squares) {
         let playerBoard = document.createElement('div');
@@ -35,7 +47,7 @@ function playerGui() {
         return playerBoard;
     }
 
-    let playerName = renderPlayerName(realPlayer.name);
+    let playerName = renderPlayerName();
     realPlayer.setBoard()
     let playerBoard = renderPlayerBoard(realPlayer.gameboard.board)
 

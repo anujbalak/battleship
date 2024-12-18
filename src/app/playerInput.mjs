@@ -1,17 +1,19 @@
 import { computerPlayer} from "./computerGui.mjs";
-import { refreshScore } from "./playerGui.mjs";
+import { refreshScore, realPlayer } from "./playerGui.mjs";
+import { isComputerWin } from "./computerInput.mjs";
+import { renderWinner } from "./renderWinner.mjs";
 
 
 function isPlayerTurn(bool = true) {
     return playerTurn = bool;
 }
 let playerTurn = true;
-let isGameFinished = false;
+export let isPlayerWin = false;
 function playerRun() {
     let computerBoard = document.querySelectorAll('div.computer-board span.cell');
     computerBoard.forEach(square => {
         square.addEventListener('click',() => {
-            if (!isGameFinished && playerTurn) {
+            if (!isPlayerWin && playerTurn && !isComputerWin) {
                 let recievedCords = square.getAttribute('value');
                 let cords = makeArrayOfCords(recievedCords);
                 if (!computerPlayer.gameboard.isAlreadyFired(cords)) {
@@ -21,6 +23,8 @@ function playerRun() {
                     refreshScore(computerPlayer.gameboard.score, computerPlayer.gameboard.changeInScore, computerPlayer.gameboard.scoreBonus);
                     computerPlayer.gameboard.scoreBonus = 0;
                     isPlayerTurn(false);
+                    
+                    
                 }
             }
         })   
@@ -30,7 +34,8 @@ function playerRun() {
 function hitShip(receiveCords) {
     computerPlayer.gameboard.receiveAttack(receiveCords)
     if (computerPlayer.gameboard.areAllShipSunk()) {
-        isGameFinished = true;
+        isPlayerWin = true;
+        renderWinner(realPlayer, isPlayerWin, computerPlayer, isComputerWin)
     }
 }
 

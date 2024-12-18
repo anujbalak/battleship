@@ -58,7 +58,6 @@ function renderShips(ships) {
         shipLocation.forEach(shipCords => {
             let shipSquare = document.querySelector(`div.computer-board span[value='${shipCords}']`);
             shipSquare.classList.add("ship-square")
-            shipSquare.innerText = shipCords
         })
     })
 }

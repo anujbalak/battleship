@@ -1,6 +1,7 @@
 import { realPlayer } from "./playerGui.mjs";
-import { refreshScore } from "./computerGui.mjs";
-import { isPlayerTurn } from "./playerInput.mjs";
+import { computerPlayer, refreshScore } from "./computerGui.mjs";
+import { isPlayerTurn, isPlayerWin } from "./playerInput.mjs";
+import { renderWinner } from "./renderWinner.mjs";
 
 
 
@@ -27,7 +28,7 @@ function getHitSquare(array, cords) {
     return;
 }
 
-let isGameFinished = false;
+export let isComputerWin = false;
 function computerRun() {
     let computerBoard = document.querySelector('main div+div.player-lobby div.computer-board');
     computerBoard.style.opacity = '30%'
@@ -39,7 +40,7 @@ function computerRun() {
 
 function afterThinking() {
     let playerBoard = document.querySelectorAll('div.real-board span.cell')
-    if (!isGameFinished) {
+    if (!isComputerWin && !isPlayerWin) {
         let cords = generateCords();
         let square = getHitSquare(playerBoard, cords);
         if (!realPlayer.gameboard.isAlreadyFired(cords)) {
@@ -49,6 +50,7 @@ function afterThinking() {
             refreshScore(realPlayer.gameboard.score, realPlayer.gameboard.changeInScore, realPlayer.gameboard.scoreBonus);
             realPlayer.gameboard.scoreBonus = 0
             isPlayerTurn(true);
+            
         }
     }
 }
@@ -56,7 +58,8 @@ function afterThinking() {
 function hitShip(receiveCords) {
     realPlayer.gameboard.receiveAttack(receiveCords)
     if (realPlayer.gameboard.areAllShipSunk()) {
-       return isGameFinished = true;
+       isComputerWin = true;
+       renderWinner(realPlayer, isPlayerWin, computerPlayer, isComputerWin)
     }
 }
 
