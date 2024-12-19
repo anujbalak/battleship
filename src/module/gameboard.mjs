@@ -22,6 +22,13 @@ class Gameboard {
     return;
   }
 
+  buildShip(length = 0, position = []) {
+    let ship = new Ship();
+    ship.length = length;
+    ship.position = position;
+    this.ships.push(ship);
+    return;
+  }
 
 
   isAlreadyGenerated(receiveCords) {
