@@ -92,7 +92,7 @@ main {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr minmax(200px 1fr);
+    grid-template-rows: 1fr minmax(250px, 100%);
     justify-items: center;
 }
 
@@ -213,7 +213,7 @@ main div.player-lobby div.real-board span.part-of-sunk-ship {
 /* ----------footer--------- */
 footer.footer {
     width: 100%;
-    position: absolute;
+    position: fixed;
     bottom: 10px;
     gap: 7px;
     font-size: 1.1rem;
