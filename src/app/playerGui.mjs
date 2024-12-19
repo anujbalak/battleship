@@ -14,7 +14,7 @@ function playerGui() {
         playerNameContainer.classList.add("player-name-container", "flex-container");
         playerNameInput.placeholder = 'Enter your name here'
         realPlayer.name = playerNameInput.value;
-        playerNameInput.autofocus
+        playerNameInput.autofocus;
         playerNameInput.addEventListener('keyup', (event) => {
             if (event.keyCode === 13 || event.code === 13) {
                 playerNameInput.blur();
@@ -67,9 +67,8 @@ function playerGui() {
             })
         })
     }
-
-    realPlayer.gameboard.placeShipPre()
-    renderShips(realPlayer.gameboard.ships)
+    // realPlayer.gameboard.placeShipPre()
+    // renderShips(realPlayer.gameboard.ships)
 
 }
 
