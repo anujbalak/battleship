@@ -36,9 +36,11 @@ function playerGui() {
         let playerBoard = document.createElement('div');
 
         playerBoard.classList.add(`${realPlayer.type}-board`);
+        playerBoard.id = 'player-board'
         squares.forEach(square => {
             let cell = document.createElement('span');
             cell.classList.add('cell');
+            cell.id = 'cell';
             // cell.innerText = square
             cell.setAttribute('value', square)
             playerBoard.appendChild(cell);

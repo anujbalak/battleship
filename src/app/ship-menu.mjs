@@ -39,6 +39,7 @@ function buildShip(length, shipMenu, rotateButton) {
     const shipContainer = document.createElement('div');
     shipContainer.draggable = true;
     shipContainer.classList.add('flex-container', 'ship-container');
+    shipContainer.id = 'ship-container';
     shipContainer.setAttribute('value', 'h');
     realPlayer.gameboard.buildShip(length);
     for(let i = 0; i < length; i++) {
@@ -58,6 +59,7 @@ function buildShip(length, shipMenu, rotateButton) {
 function ship(shipContainer) {
     const square = document.createElement('span');
     square.classList.add('ship-square');
+    square.id = 'ship-square';
     square.innerText = '🚩'
     shipContainer.appendChild(square);
 }
