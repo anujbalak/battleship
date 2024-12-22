@@ -12,6 +12,7 @@ class Gameboard {
     this.score = 0
     this.changeInScore = 0
     this.scoreBonus = 0
+    this.isPlace = false;
   }
 
   placeShip(length = 0) {
