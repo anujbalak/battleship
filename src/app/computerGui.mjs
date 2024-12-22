@@ -114,4 +114,12 @@ function runScoreAnimation(scoreNode, changeInScore, bonusScore) {
     scoreNode.innerText = scoreChangeText;
 }
 
+export function activatComputerBoard() {
+    let squares = document.querySelectorAll('div.computer-board span.cell');
+    squares.forEach(square => {
+        square.classList.add('can-hover');
+    })
+    squares.style.opacity = '1';
+}
+
 export { computerGui, computerPlayer, refreshScore}

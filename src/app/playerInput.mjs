@@ -29,12 +29,6 @@ function playerRun() {
     })
 }
 
-function activatComputerBoard(squares) {
-    squares.forEach(square => {
-        square.classList.add('can-hover');
-    })
-}
-
 function hitShip(receiveCords) {
     computerPlayer.gameboard.receiveAttack(receiveCords)
     if (computerPlayer.gameboard.areAllShipSunk()) {
