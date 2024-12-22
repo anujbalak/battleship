@@ -265,6 +265,13 @@ class Gameboard {
     }
     return;
   }
+
+  areAllShipsPlace() {
+    if (this.ships.every(ship => ship.isPlace === true)) {
+        return true;
+    }
+    return false;
+}
 }
 
 function generateBoard() {
