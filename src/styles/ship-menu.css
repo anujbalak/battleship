@@ -98,7 +98,7 @@ div.ship-menu div.ship-container {
 }
 
 div.ship-menu div#selected-ship[value='v'] {
-  flex-direction: column;
+  flex-direction: column-reverse;
 }
 div.ship-menu div#selected-ship[value='h'] {
   flex-direction: row;
@@ -110,10 +110,6 @@ div.ship-menu div#selected-ship[value='v'] span.ship-square {
 
 div.ship-menu div.ship-container:focus, div.ship-menu div.ship-container:hover {
   cursor: grab;
-}
-
-div.ship-menu div.ship-container:active {
-  cursor: grabbing;
 }
 
 div.ship-menu div#selected-ship {
@@ -146,4 +142,19 @@ div.ship-menu div.ship-container span.ship-square {
     background-color: rgb(var(--ship--color));
     font-weight: 700;
     color: #eee;
+}
+
+/* -----------------------drag n drop----------- */
+
+div.dragging:active {
+  cursor: grabbing;
+  border-bottom: 1px rgb(var(--accent-color)) solid;
+}
+
+span.drag-over-ship {
+  background-color: rgb(var(--hover-color));
+}
+
+.hide {
+  display: none;;
 }
