@@ -187,6 +187,7 @@ function setShipPosition(length, nodeArray) {
         let shipLength = ships[i].length;
         let shipPosition = ships[i].position;
         if (shipLength == length && shipPosition.length === 0) {
+            realPlayer.gameboard.ships[i].isPlace = true;
             return realPlayer.gameboard.ships[i].position = cordsArray;
         }
     }
@@ -194,8 +195,6 @@ function setShipPosition(length, nodeArray) {
 
 function isPreOccupied(e) {
     let isOccupied = false;
-    // let x = Number(e.target.getAttribute('value').split(',')[0]);
-    // let y = Number(e.target.getAttribute('value').split(',')[1])
     let ships = realPlayer.gameboard.ships;
     for (let i = 0; i < e.length && !isOccupied; i++) {
         let x = e[i][0];
@@ -204,7 +203,6 @@ function isPreOccupied(e) {
             return  isOccupied = true;
         }
     }
-    console.log(isOccupied);
     return isOccupied;
 }
 

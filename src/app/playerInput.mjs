@@ -13,7 +13,7 @@ function playerRun() {
     let computerBoard = document.querySelectorAll('div.computer-board span.cell');
     computerBoard.forEach(square => {
         square.addEventListener('click',() => {
-            if (!isPlayerWin && playerTurn && !isComputerWin) {
+            if (!isPlayerWin && playerTurn && !isComputerWin && realPlayer.gameboard.areAllShipsPlace()) {
                 let recievedCords = square.getAttribute('value');
                 let cords = makeArrayOfCords(recievedCords);
                 if (!computerPlayer.gameboard.isAlreadyFired(cords)) {
@@ -23,11 +23,15 @@ function playerRun() {
                     refreshScore(computerPlayer.gameboard.score, computerPlayer.gameboard.changeInScore, computerPlayer.gameboard.scoreBonus);
                     computerPlayer.gameboard.scoreBonus = 0;
                     isPlayerTurn(false);
-                    
-                    
                 }
             }
         })   
+    })
+}
+
+function activatComputerBoard(squares) {
+    squares.forEach(square => {
+        square.classList.add('can-hover');
     })
 }
 

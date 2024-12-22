@@ -1,5 +1,6 @@
 import { realPlayer } from './playerGui.mjs'
 import { dragNDropShips } from './ship-drag-n-drop.mjs';
+import { placeRandomly } from './place-randomly.mjs';
 
 function shipMenuUi() {
     const shipMenuContainer = document.createElement('div');
@@ -21,19 +22,20 @@ function shipMenuUi() {
     rotateLabel.className = 'switch';
 
     rotateInstructions.innerText = 'Toggle this button to rotate the ships.'
+    let main = document.querySelector('main');
+    main.appendChild(shipMenuContainer);
     shipMenuContainer.appendChild(rotateInstructionsContainer);
     rotateInstructionsContainer.appendChild(rotateInstructions)
     rotateInstructionsContainer.appendChild(rotateButton);
     rotateInstructionsContainer.appendChild(rotateLabel);
     shipMenuContainer.appendChild(shipMenu);
-    let main = document.querySelector('main');
-    main.appendChild(shipMenuContainer);
     buildShip(5, shipMenu, rotateButton)
     buildShip(4, shipMenu, rotateButton)
     buildShip(3, shipMenu, rotateButton)
     buildShip(3, shipMenu, rotateButton)
     buildShip(2, shipMenu, rotateButton)
     dragNDropShips();
+    placeRandomly();
 }
 
 function buildShip(length, shipMenu, rotateButton) {
