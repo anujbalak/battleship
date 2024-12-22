@@ -71,6 +71,7 @@ function playerGui() {
     }
     // realPlayer.gameboard.placeShipPre()
     // renderShips(realPlayer.gameboard.ships)
+    // console.log(realPlayer.gameboard.ships)
 
 }
 

@@ -1,4 +1,5 @@
 import { realPlayer } from './playerGui.mjs'
+import { dragNDropShips } from './ship-drag-n-drop.mjs';
 
 function shipMenuUi() {
     const shipMenuContainer = document.createElement('div');
@@ -32,7 +33,7 @@ function shipMenuUi() {
     buildShip(3, shipMenu, rotateButton)
     buildShip(3, shipMenu, rotateButton)
     buildShip(2, shipMenu, rotateButton)
-
+    dragNDropShips();
 }
 
 function buildShip(length, shipMenu, rotateButton) {
