@@ -1,8 +1,12 @@
 import { realPlayer } from "./playerGui.mjs"
+import { activatComputerBoard } from "./computerGui.mjs";
+import { hideShipMenuGui } from "./ship-menu.mjs";
+import { hidePlaceButton } from "./place-randomly.mjs";
 
 let grabbedBlock = null;
 let nodeToHide = null;
 let shipPosition = [];
+let arrayOfNodes = []
 
 function dragNDropShips() {
     const shipContainers = document.querySelectorAll('div.ship-menu div#ship-container');
@@ -28,7 +32,7 @@ function dragNDropShips() {
         })
     })
 
-
+    
     const board = document.querySelector('main div.player-lobby div#player-board');
     const boardSquares = document.querySelectorAll('main div.player-lobby div#player-board span.cell')
     board.childNodes.forEach(square => {
@@ -88,6 +92,7 @@ function handleDragEnter(e) {
 }
 
 function buildNodeArray(e) {
+    if (typeof(e.target) !== 'object') return;
     let direction = e.dataTransfer.getData('direction');
     let length = e.dataTransfer.getData('length');
     let x = Number(e.target.getAttribute('value').split(',')[0]);
@@ -188,8 +193,13 @@ function setShipPosition(length, nodeArray) {
         let shipPosition = ships[i].position;
         if (shipLength == length && shipPosition.length === 0) {
             realPlayer.gameboard.ships[i].isPlace = true;
-            return realPlayer.gameboard.ships[i].position = cordsArray;
+            realPlayer.gameboard.ships[i].position = cordsArray;
         }
+    }
+    if (realPlayer.gameboard.areAllShipsPlace()) {
+        activatComputerBoard();
+        hideShipMenuGui();
+        hidePlaceButton();
     }
 }
 

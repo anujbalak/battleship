@@ -29,7 +29,7 @@ main div.ship-menu-container {
     border-radius: 25px;
     border: 1px solid rgb(var(--accent-color));
     display: grid;
-    grid-template-rows: 40px 1fr;
+    grid-template-rows: 40px 1fr 60px;
     justify-content: center;
     align-items: center;
 }
@@ -156,5 +156,43 @@ span.drag-over-ship {
 }
 
 .hide {
+  display: none;
+}
+
+/* ------------------------ */
+
+div.random-place-container {
+  display: flex;
+  justify-content: center;
+  justify-content: center;
+}
+
+div.random-place-container button.random-place-button {
+  border: 2px rgb(49, 32, 69) solid;
+  background-color: rgb(var(--accent-color));
+  font-size: 1.4rem;
+  padding: 4px 10px;
+  font-family: "Jost", sans-serif;
+  color: rgb(var(--dark-color));
+  box-shadow: 5px 5px 0 rgb(var(--hover-color));
+  cursor: pointer;
+  border-radius: 7px;
+  margin-bottom: 3px;
+}
+
+div.random-place-container button.random-place-button:focus, div.random-place-container button.random-place-button:hover {
+  box-shadow: 7px 7px 0 rgb(var(--score-decrease));
+}
+
+div.ship-menu-container div.random-place-container button.clicked {
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+  border-width: 5px;
+  box-shadow: none;
+  background-color:  rgb(231, 171, 255);
+  box-shadow: 1px 1px 0 4px rgb(245, 150, 150);
+  border-radius: 10px;
+}
+
+div.hide * {
   display: none;;
 }

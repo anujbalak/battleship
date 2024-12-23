@@ -2,13 +2,16 @@ import { realPlayer } from './playerGui.mjs'
 import { dragNDropShips } from './ship-drag-n-drop.mjs';
 import { placeRandomly } from './place-randomly.mjs';
 
+let rotateInstructionsContainer = null;
+let shipMenu = null
+
 function shipMenuUi() {
     const shipMenuContainer = document.createElement('div');
-    const rotateInstructionsContainer = document.createElement('div');
+    rotateInstructionsContainer = document.createElement('div');
     const rotateInstructions = document.createElement('div');
     const rotateButton = document.createElement('input');
     const rotateLabel = document.createElement('label');
-    const shipMenu = document.createElement('div');
+    shipMenu = document.createElement('div');
 
     shipMenuContainer.className = 'ship-menu-container';
     rotateInstructionsContainer.className = 'rotate-instructions-container'
@@ -21,7 +24,7 @@ function shipMenuUi() {
     rotateLabel.setAttribute('for', 'toggle');
     rotateLabel.className = 'switch';
 
-    rotateInstructions.innerText = 'Toggle this button to rotate the ships.'
+    rotateInstructions.innerText = 'Click on the ships then toggle this button to rotate the ships.'
     let main = document.querySelector('main');
     main.appendChild(shipMenuContainer);
     shipMenuContainer.appendChild(rotateInstructionsContainer);
@@ -78,6 +81,14 @@ function rotateShips(shipContainer) {
         shipContainer.setAttribute('value', 'v');
     } else if (shipContainer.getAttribute('value') === 'v') {
         shipContainer.setAttribute('value', 'h');
+    }
+}
+
+export function hideShipMenuGui() {
+    if (rotateInstructionsContainer != null && shipMenu != null) {
+        console.log(shipMenu);
+        rotateInstructionsContainer.classList.add('hide');
+        shipMenu.classList.add('hide');
     }
 }
 
