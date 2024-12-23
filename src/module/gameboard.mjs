@@ -271,7 +271,11 @@ class Gameboard {
         return true;
     }
     return false;
-}
+  }
+
+  removeAllShips() {
+    return this.ships = []
+  }
 }
 
 function generateBoard() {
