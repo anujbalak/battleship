@@ -92,7 +92,7 @@ main {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr minmax(250px, 100%);
+    grid-template-rows: 1fr minmax(280px, 100%);
     justify-items: center;
 }
 
@@ -123,6 +123,10 @@ main div div.real-board, main div div.computer-board {
     border-top: 1px rgb(var(--accent-color)) solid;
 }
 
+main div div.computer-board,  div#player-board + div.score-container{
+    opacity: 0.2;
+}
+
 main div div.real-board span.cell, main div div.computer-board span.cell {
     padding: 3px;
     border-right: 1px rgb(var(--accent-color)) solid;
@@ -140,7 +144,11 @@ div.real-board span.ship-square {
     color: #eee;
 }
 
-main div div.computer-board span.cell:hover, main div div.computer-board span.cell:focus {
+div.real-board span.removed-ship {
+    background-color: transparent;
+}
+
+main div div.computer-board span.can-hover:hover, main div div.computer-board span.can-hover:focus {
     cursor: pointer;
     background-color: rgb(var(--hover-color));
 }
@@ -213,7 +221,7 @@ main div.player-lobby div.real-board span.part-of-sunk-ship {
 /* ----------footer--------- */
 footer.footer {
     width: 100%;
-    position: fixed;
+    position: absolute;
     bottom: 10px;
     gap: 7px;
     font-size: 1.1rem;

@@ -2,6 +2,7 @@ import { computerPlayer} from "./computerGui.mjs";
 import { refreshScore, realPlayer } from "./playerGui.mjs";
 import { isComputerWin } from "./computerInput.mjs";
 import { renderWinner } from "./renderWinner.mjs";
+import { hidePlaceButton } from "./place-randomly.mjs";
 
 
 function isPlayerTurn(bool = true) {
@@ -24,6 +25,7 @@ function playerRun() {
                     computerPlayer.gameboard.scoreBonus = 0;
                     isPlayerTurn(false);
                 }
+                hidePlaceButton();
             }
         })   
     })
