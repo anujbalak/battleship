@@ -59,22 +59,24 @@ function playerGui() {
     const MAIN_AREA = document.querySelector('main');
     MAIN_AREA.appendChild(playerLobby)
 
-    function renderShips(ships) {
-        ships.forEach(ship => {
-            let shipLocation = ship.position;
-            shipLocation.forEach(shipCords => {
-                let shipSquare = document.querySelector(`div.real-board span[value='${shipCords}']`);
-                shipSquare.classList.add("ship-square")
-                shipSquare.innerText = '🚩'
-            })
-        })
-    }
     // realPlayer.gameboard.placeShipPre()
     // renderShips(realPlayer.gameboard.ships)
     // console.log(realPlayer.gameboard.ships)
-
+    
 }
 
+export function renderShips() {
+    let ships = realPlayer.gameboard.ships;
+    ships.forEach(ship => {
+        let shipLocation = ship.position;
+        shipLocation.forEach(shipCords => {
+            let shipSquare = document.querySelector(`div.real-board span[value='${shipCords}']`);
+            shipSquare.classList.add("ship-square")
+            shipSquare.innerText = '🚩'
+        })
+        ship.isPlace = true;
+    })
+}
 function renderPlayerScore(playerLobby) {
     let score = 0;
     let scoreContainer = document.createElement('div');

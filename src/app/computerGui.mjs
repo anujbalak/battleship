@@ -59,6 +59,7 @@ function renderShips(ships) {
             let shipSquare = document.querySelector(`div.computer-board span[value='${shipCords}']`);
             shipSquare.classList.add("ship-square")
         })
+        ship.isPlace = true;
     })
 }
 
@@ -66,7 +67,7 @@ function generateShips() {
     computerPlayer.gameboard.placeShip(5)
     computerPlayer.gameboard.placeShip(4)
     computerPlayer.gameboard.placeShip(3)
-    computerPlayer.gameboard.placeShip(3)
+    computerPlayer.gameboard.placeShip(3) 
     computerPlayer.gameboard.placeShip(2)
 }
 
@@ -115,11 +116,14 @@ function runScoreAnimation(scoreNode, changeInScore, bonusScore) {
 }
 
 export function activatComputerBoard() {
+    let board = document.querySelector('div.computer-board');
     let squares = document.querySelectorAll('div.computer-board span.cell');
     squares.forEach(square => {
         square.classList.add('can-hover');
     })
-    squares.style.opacity = '1';
+    board.style.opacity = '1';
+    let scoreContainer = document.querySelector('div#player-board+div.score-container')
+    scoreContainer.style.opacity = '1';
 }
 
 export { computerGui, computerPlayer, refreshScore}
