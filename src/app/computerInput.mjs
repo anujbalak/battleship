@@ -2,17 +2,7 @@ import { realPlayer } from "./playerGui.mjs";
 import { computerPlayer, refreshScore } from "./computerGui.mjs";
 import { isPlayerTurn, isPlayerWin } from "./playerInput.mjs";
 import { renderWinner } from "./renderWinner.mjs";
-
-
-
-function generateCords() {
-    let x = Math.floor(Math.random() * 10);
-    let y = Math.floor(Math.random() * 10);
-    if (realPlayer.gameboard.isAlreadyFired([x, y])) {
-        return generateCords();
-    }
-    return [x, y];
-}
+import { getCords } from "./computer-moves.mjs";
 
 function getHitSquare(array, cords) {
     let isFound = false;
@@ -29,6 +19,7 @@ function getHitSquare(array, cords) {
 }
 
 export let isComputerWin = false;
+
 function computerRun() {
     let computerBoard = document.querySelector('main div+div.player-lobby div.computer-board');
     computerBoard.style.opacity = '30%'
@@ -41,7 +32,7 @@ function computerRun() {
 function afterThinking() {
     let playerBoard = document.querySelectorAll('div.real-board span.cell')
     if (!isComputerWin && !isPlayerWin) {
-        let cords = generateCords();
+        let cords = getCords();
         let square = getHitSquare(playerBoard, cords);
         if (!realPlayer.gameboard.isAlreadyFired(cords)) {
             hitShip(cords,);
@@ -49,8 +40,7 @@ function afterThinking() {
             styleSunkShip();
             refreshScore(realPlayer.gameboard.score, realPlayer.gameboard.changeInScore, realPlayer.gameboard.scoreBonus);
             realPlayer.gameboard.scoreBonus = 0
-            isPlayerTurn(true);
-            
+            isPlayerTurn(true);   
         }
     }
 }
@@ -59,7 +49,7 @@ function hitShip(receiveCords) {
     realPlayer.gameboard.receiveAttack(receiveCords)
     if (realPlayer.gameboard.areAllShipSunk()) {
        isComputerWin = true;
-       renderWinner(realPlayer, isPlayerWin, computerPlayer, isComputerWin)
+    //    renderWinner(realPlayer, isPlayerWin, computerPlayer, isComputerWin)
     }
 }
 
