@@ -86,7 +86,6 @@ function rotateShips(shipContainer) {
 
 export function hideShipMenuGui() {
     if (rotateInstructionsContainer != null && shipMenu != null) {
-        console.log(shipMenu);
         rotateInstructionsContainer.classList.add('hide');
         shipMenu.classList.add('hide');
     }
