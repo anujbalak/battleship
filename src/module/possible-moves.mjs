@@ -58,6 +58,15 @@ class Moves {
         }
         return this.l = [newX, y];
     }
+
+    setPossibleMoves() {
+        return (
+            this.setUpMove(this.current),
+            this.setDownMove(this.current),
+            this.setRightMove(this.current),
+            this.setLeftMove(this.current)
+        );
+    };
 }
 
 export { Moves}
