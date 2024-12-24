@@ -1,10 +1,8 @@
+import { realPlayer } from "../app/playerGui.mjs";
+
 class Moves {
-    constructor(current) {
-        this.current = current
-        this.u = null
-        this.d = null
-        this.r = null;
-        this.l = null;
+    constructor() {
+        this.moves = []
     }
 
     setUpMove(array) {
@@ -14,10 +12,10 @@ class Moves {
         let x = array[0];
         let oldY = array[1];
         let newY = oldY + 1;
-        if (x > 9 || x < 0 || newY > 9 || newY < 0) {
+        if (x > 9 || x < 0 || newY > 9 || newY < 0 || realPlayer.gameboard.isAlreadyFired(array)) {
             return;
         }
-        return this.u = [x, newY];
+        return this.moves.push([x, newY]);
     }
 
     setDownMove(array) {
@@ -27,10 +25,10 @@ class Moves {
         let x = array[0];
         let oldY = array[1];
         let newY = oldY - 1;
-        if (x > 9 || x < 0 || newY > 9 || newY < 0) {
+        if (x > 9 || x < 0 || newY > 9 || newY < 0 || realPlayer.gameboard.isAlreadyFired(array)) {
             return;
         }
-        return this.d = [x, newY];
+        return this.moves.push([x, newY]);
     }
 
     setRightMove(array) {
@@ -40,10 +38,10 @@ class Moves {
         let oldX = array[0];
         let y = array[1];
         let newX = oldX + 1;
-        if (newX > 9 || newX < 0 || y > 9 || y < 0) {
+        if (newX > 9 || newX < 0 || y > 9 || y < 0 || realPlayer.gameboard.isAlreadyFired(array)) {
             return;
         }
-        return this.r = [newX, y];
+        return this.moves.push([newX, y]);
     }
 
     setLeftMove(array) {
@@ -53,18 +51,18 @@ class Moves {
         let oldX = array[0];
         let y = array[1];
         let newX = oldX - 1;
-        if (newX > 9 || newX < 0 || y > 9 || y < 0) {
+        if (newX > 9 || newX < 0 || y > 9 || y < 0 || realPlayer.gameboard.isAlreadyFired(array)) {
             return;
         }
-        return this.l = [newX, y];
+        return this.moves.push([newX, y]);
     }
 
-    setPossibleMoves() {
+    setPossibleMoves(array) {
         return (
-            this.setUpMove(this.current),
-            this.setDownMove(this.current),
-            this.setRightMove(this.current),
-            this.setLeftMove(this.current)
+            this.setUpMove(array),
+            this.setDownMove(array),
+            this.setRightMove(array),
+            this.setLeftMove(array)
         );
     };
 }
