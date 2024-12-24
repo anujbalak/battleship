@@ -35,7 +35,7 @@ function hitShip(receiveCords) {
     computerPlayer.gameboard.receiveAttack(receiveCords)
     if (computerPlayer.gameboard.areAllShipSunk()) {
         isPlayerWin = true;
-        renderWinner(realPlayer, isPlayerWin, computerPlayer, isComputerWin)
+        // renderWinner(realPlayer, isPlayerWin, computerPlayer, isComputerWin)
     }
 }
 
