@@ -2,7 +2,7 @@ import { realPlayer } from "../app/playerGui.mjs";
 
 class Moves {
     constructor() {
-        this.moves = []
+        this.nextMoves = []
     }
 
     setUpMove(array) {
@@ -15,7 +15,7 @@ class Moves {
         if (x > 9 || x < 0 || newY > 9 || newY < 0 || realPlayer.gameboard.isAlreadyFired(array)) {
             return;
         }
-        return this.moves.push([x, newY]);
+        return this.nextMoves.push([x, newY]);
     }
 
     setDownMove(array) {
@@ -28,7 +28,7 @@ class Moves {
         if (x > 9 || x < 0 || newY > 9 || newY < 0 || realPlayer.gameboard.isAlreadyFired(array)) {
             return;
         }
-        return this.moves.push([x, newY]);
+        return this.nextMoves.push([x, newY]);
     }
 
     setRightMove(array) {
@@ -41,7 +41,7 @@ class Moves {
         if (newX > 9 || newX < 0 || y > 9 || y < 0 || realPlayer.gameboard.isAlreadyFired(array)) {
             return;
         }
-        return this.moves.push([newX, y]);
+        return this.nextMoves.push([newX, y]);
     }
 
     setLeftMove(array) {
@@ -54,7 +54,7 @@ class Moves {
         if (newX > 9 || newX < 0 || y > 9 || y < 0 || realPlayer.gameboard.isAlreadyFired(array)) {
             return;
         }
-        return this.moves.push([newX, y]);
+        return this.nextMoves.push([newX, y]);
     }
 
     setPossibleMoves(array) {
@@ -67,4 +67,4 @@ class Moves {
     };
 }
 
-export { Moves}
+export { Moves }
