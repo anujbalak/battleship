@@ -1,5 +1,6 @@
 class Moves {
-    constructor() {
+    constructor(current) {
+        this.current = current
         this.u = null
         this.d = null
         this.r = null;
