@@ -70,6 +70,7 @@ function styleSunkShip() {
         let shipPosition = sunkShipsPosition[countSunkShips - 1];
         shipPosition.forEach(cords => {
             let square = document.querySelector(`div.real-board span[value='${cords}']`);
+            square.classList.remove('hit-ship');
             square.classList.add('part-of-sunk-ship')
             square.innerText = '☠'
         })
