@@ -58,6 +58,7 @@ class Moves {
     }
 
     setPossibleMoves(array) {
+        if (array === null || array.length !== 2) return;
         return (
             this.setUpMove(array),
             this.setDownMove(array),
