@@ -14,6 +14,7 @@ class Gameboard {
     this.changeInScore = 0
     this.scoreBonus = 0
     this.isPlace = false;
+    this.isAShipSunk = false;
   }
 
   placeShip(length = 0) {
@@ -187,6 +188,7 @@ class Gameboard {
 
   receiveAttack(recievedCords) {
     let gotShip = false;
+    this.isAShipSunk = false;
     if (!this.isAlreadyFired(recievedCords)) {
       this.ships.forEach((ship) => {
         if (gotShip === false) {
@@ -260,6 +262,7 @@ class Gameboard {
 
   sunkShip(ship) {
     if (ship.sunk) {
+      this.isAShipSunk = true;
       this.scoreBonus = 100;
       this.score += 100;
       this.sunkShipsPosition.push(ship.position);
