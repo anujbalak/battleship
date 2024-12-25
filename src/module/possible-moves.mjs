@@ -12,10 +12,11 @@ class Moves {
         let x = array[0];
         let oldY = array[1];
         let newY = oldY + 1;
-        if (x > 9 || x < 0 || newY > 9 || newY < 0 || realPlayer.gameboard.isAlreadyFired(array)) {
+        let nextMove = [x, newY]
+        if (x > 9 || x < 0 || newY > 9 || newY < 0 || realPlayer.gameboard.isAlreadyFired(nextMove)) {
             return;
         }
-        return this.nextMoves.push([x, newY]);
+        return this.nextMoves.push(nextMove);
     }
 
     setDownMove(array) {
@@ -25,10 +26,11 @@ class Moves {
         let x = array[0];
         let oldY = array[1];
         let newY = oldY - 1;
-        if (x > 9 || x < 0 || newY > 9 || newY < 0 || realPlayer.gameboard.isAlreadyFired(array)) {
+        let nextMove = [x, newY]
+        if (x > 9 || x < 0 || newY > 9 || newY < 0 || realPlayer.gameboard.isAlreadyFired(nextMove)) {
             return;
         }
-        return this.nextMoves.push([x, newY]);
+        return this.nextMoves.push(nextMove);
     }
 
     setRightMove(array) {
@@ -38,10 +40,11 @@ class Moves {
         let oldX = array[0];
         let y = array[1];
         let newX = oldX + 1;
-        if (newX > 9 || newX < 0 || y > 9 || y < 0 || realPlayer.gameboard.isAlreadyFired(array)) {
+        let nextMove = [newX, y]
+        if (newX > 9 || newX < 0 || y > 9 || y < 0 || realPlayer.gameboard.isAlreadyFired(nextMove)) {
             return;
         }
-        return this.nextMoves.push([newX, y]);
+        return this.nextMoves.push(nextMove);
     }
 
     setLeftMove(array) {
@@ -51,10 +54,11 @@ class Moves {
         let oldX = array[0];
         let y = array[1];
         let newX = oldX - 1;
-        if (newX > 9 || newX < 0 || y > 9 || y < 0 || realPlayer.gameboard.isAlreadyFired(array)) {
+        let nextMove = [newX, y]
+        if (newX > 9 || newX < 0 || y > 9 || y < 0 || realPlayer.gameboard.isAlreadyFired(nextMove)) {
             return;
         }
-        return this.nextMoves.push([newX, y]);
+        return this.nextMoves.push(nextMove);
     }
 
     setPossibleMoves(array) {
