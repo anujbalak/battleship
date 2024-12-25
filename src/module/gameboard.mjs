@@ -7,6 +7,7 @@ class Gameboard {
     this.missed = [];
     this.firedSquares = []
     this.isHit = false;
+    this.hitCords = null;
     this.sunkShipsPosition = [];
     this.totalSunkShips = 0;
     this.score = 0
@@ -198,6 +199,7 @@ class Gameboard {
               ) {
                 gotShip = true;
                 this.isHit = true;
+                this.hitCords = recievedCords;
                 ship.hit();
                 ship.isSunk();
                 this.sunkShip(ship);
