@@ -26,8 +26,9 @@ class Gameboard {
     return;
   }
 
-  buildShip(length = 0, position = []) {
+  buildShip(length = 0, position = [], name) {
     let ship = new Ship();
+    ship.name = name;
     ship.length = length;
     ship.position = position;
     this.ships.push(ship);
