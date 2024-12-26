@@ -5,6 +5,7 @@ class Ship {
     this.hitCount = 0;
     this.sunk = false;
     this.isPlace = false;
+    this.name = '';
   }
 
   hit() {
