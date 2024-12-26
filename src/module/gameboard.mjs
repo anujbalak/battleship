@@ -17,9 +17,10 @@ class Gameboard {
     this.isAShipSunk = false;
   }
 
-  placeShip(length = 0) {
+  placeShip(length = 0, name) {
     let ship = new Ship();
     ship.length = length;
+    ship.name = name;
     ship.position = this.generateShipPosition(length);
     this.ships.push(ship);
     return;
