@@ -48,7 +48,7 @@ function buildShip(length, shipMenu, rotateButton, name) {
     shipContainer.classList.add('flex-container', 'ship-container');
     shipContainer.id = 'ship-container';
     shipContainer.setAttribute('value', 'h');
-    shipContainer.name = name;
+    shipContainer.setAttribute('name', name.toLowerCase())
     realPlayer.gameboard.buildShip(length, [], name);
     for(let i = 0; i < length; i++) {
         ship(shipContainer);

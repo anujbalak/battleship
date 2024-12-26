@@ -59,6 +59,7 @@ function dragNDropShips() {
 function handleDragStart(e) {
     nodeToHide = e.target;
     e.dataTransfer.setData('direction', e.target.getAttribute('value'));
+    e.dataTransfer.setData('name', e.target.getAttribute('name'));
     e.dataTransfer.setData('length', e.target.childNodes.length);
     e.target.classList.add('dragging')
     setTimeout(() => {
@@ -175,12 +176,13 @@ function handleDrop(e) {
                 node.innerText = '🚩'
             });
         }
-        let length = e.dataTransfer.getData('length');;
-        setShipPosition(length, nodeArray);
+        let length = e.dataTransfer.getData('length');
+        let name = e.dataTransfer.getData('name');
+        setShipPosition(length, name, nodeArray);
     }
 }
 
-function setShipPosition(length, nodeArray) {
+function setShipPosition(length, name, nodeArray) {
     let ships = realPlayer.gameboard.ships;
     let cordsArray = []
     nodeArray.forEach(node => {
@@ -191,7 +193,8 @@ function setShipPosition(length, nodeArray) {
     for(let i = 0; i < ships.length; i++) {
         let shipLength = ships[i].length;
         let shipPosition = ships[i].position;
-        if (shipLength == length && shipPosition.length === 0) {
+        let shipName = ships[i].name.toLowerCase();
+        if (shipLength == length && shipPosition.length === 0 && shipName == name) {
             realPlayer.gameboard.ships[i].isPlace = true;
             realPlayer.gameboard.ships[i].position = cordsArray;
         }
