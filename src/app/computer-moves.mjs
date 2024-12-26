@@ -5,15 +5,22 @@ let possibleMoves = [];
 
 function getCords() {
     if (realPlayer.gameboard.isHit) {
-        getPreDeterminedCords([realPlayer.gameboard.hitCords]);
+        getPreDeterminedCords(realPlayer.gameboard.hitCords);
     }
     if (realPlayer.gameboard.isAShipSunk) {
         possibleMoves.splice(0, possibleMoves.length);
     }
+
+    if(possibleMoves.length === 0 && areBombedShipSquares(bombedShipSquares())) {
+        let arrayOfLocation = getBombedShipCords(bombedShipSquares());
+        arrayOfLocation.forEach(location => {
+            getPreDeterminedCords(location)
+        })
+    }
+
     if (possibleMoves.length === 0) {
         return generateCords();
     }
-    
 
     let nextMove = possibleMoves[0];
     possibleMoves.shift();
@@ -21,13 +28,10 @@ function getCords() {
 }
 
 function getPreDeterminedCords(hitCords) {
-    hitCords.forEach(cords =>  {
-        let moves = new Moves();
-        moves.setPossibleMoves(cords)
-        moves.nextMoves.forEach(move => {
-            possibleMoves.unshift(move);
-        })
-        console.log(moves.nextMoves);
+    let moves = new Moves();
+    moves.setPossibleMoves(hitCords)
+    moves.nextMoves.forEach(move => {
+        possibleMoves.unshift(move);
     })
 }
     
@@ -41,32 +45,33 @@ function generateCords() {
     return [x, y];
 }
 
-function getHitCords() {
+function bombedShipSquares() {
     let hitShipsCords = document.querySelectorAll('div.player-lobby div#player-board span.hit-ship')
     return hitShipsCords
 }
 
-function isHitCords(hitShipsCords) {
-    if (hitShipsCords.length > 0) {
-        return true;
+function areBombedShipSquares(arrayOfNodes) {
+    if (arrayOfNodes != null) {
+        if (arrayOfNodes.length > 0) {
+            return true;
+        }
     }
     return false;
 }
 
-
-function getCordsOfNotSunkShips(hitShipsCords) {
-    let result =[]
-    hitShipsCords.forEach(square => {
-        result.push(makeArrayOfCords(square.getAttribute('value')));
+function getBombedShipCords(arrayOfNodes) {
+    let bombedShipLocationArray = []
+    arrayOfNodes.forEach(node => {
+        let value = makeArrayOfCords(node.getAttribute('value'));
+        bombedShipLocationArray.push(value);
     })
-    console.log(result)
-    return result;
+    return bombedShipLocationArray;
 }
 
 function makeArrayOfCords(cordsString) {
     let cordsIntArr = cordsString.split(',');
-    let x = (cordsIntArr[0]);
-    let y = (cordsIntArr[1]);
+    let x = Number(cordsIntArr[0]);
+    let y = Number(cordsIntArr[1]);
     return [x, y]
 }
 
