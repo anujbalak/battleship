@@ -1,5 +1,6 @@
 import { Player } from "../module/player.mjs";
 import { renderPlayerScore } from "./playerGui.mjs";
+import { shipNames } from "../ext-files/ship-names.mjs";
 
 const computerPlayer = new Player()
 function computerGui() {
@@ -64,11 +65,11 @@ function renderShips(ships) {
 }
 
 function generateShips() {
-    computerPlayer.gameboard.placeShip(5)
-    computerPlayer.gameboard.placeShip(4)
-    computerPlayer.gameboard.placeShip(3)
-    computerPlayer.gameboard.placeShip(3) 
-    computerPlayer.gameboard.placeShip(2)
+    computerPlayer.gameboard.placeShip(5, shipNames[0])
+    computerPlayer.gameboard.placeShip(4, shipNames[1])
+    computerPlayer.gameboard.placeShip(3, shipNames[2])
+    computerPlayer.gameboard.placeShip(3, shipNames[3]) 
+    computerPlayer.gameboard.placeShip(2, shipNames[4])
 }
 
 function renderScore(score = 0) {

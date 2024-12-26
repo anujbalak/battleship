@@ -1,6 +1,7 @@
 import { realPlayer } from './playerGui.mjs'
 import { dragNDropShips } from './ship-drag-n-drop.mjs';
 import { placeRandomly } from './place-randomly.mjs';
+import { shipNames } from '../ext-files/ship-names.mjs';
 
 let rotateInstructionsContainer = null;
 let shipMenu = null
@@ -32,22 +33,22 @@ function shipMenuUi() {
     rotateInstructionsContainer.appendChild(rotateButton);
     rotateInstructionsContainer.appendChild(rotateLabel);
     shipMenuContainer.appendChild(shipMenu);
-    buildShip(5, shipMenu, rotateButton)
-    buildShip(4, shipMenu, rotateButton)
-    buildShip(3, shipMenu, rotateButton)
-    buildShip(3, shipMenu, rotateButton)
-    buildShip(2, shipMenu, rotateButton)
+    buildShip(5, shipMenu, rotateButton, shipNames[0])
+    buildShip(4, shipMenu, rotateButton, shipNames[1])
+    buildShip(3, shipMenu, rotateButton, shipNames[2])
+    buildShip(3, shipMenu, rotateButton, shipNames[3])
+    buildShip(2, shipMenu, rotateButton, shipNames[4])
     dragNDropShips();
     placeRandomly();
 }
 
-function buildShip(length, shipMenu, rotateButton) {
+function buildShip(length, shipMenu, rotateButton, name) {
     const shipContainer = document.createElement('div');
     shipContainer.draggable = true;
     shipContainer.classList.add('flex-container', 'ship-container');
     shipContainer.id = 'ship-container';
     shipContainer.setAttribute('value', 'h');
-    realPlayer.gameboard.buildShip(length);
+    realPlayer.gameboard.buildShip(length, [], name);
     for(let i = 0; i < length; i++) {
         ship(shipContainer);
     }
