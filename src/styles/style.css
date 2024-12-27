@@ -245,6 +245,7 @@ dialog#winnerDialog {
     left: 50%;
     background-color: rgb(var(--dark-color));
 }
+
 dialog#winnerDialog:focus {
     outline: none;
 }
@@ -265,58 +266,67 @@ dialog#winnerDialog::backdrop {
     filter: blur(10px);
 }
 
-dialog div.winner-container {
-    display: grid;
+div.ship-menu-container div.winner-container, div#log-container div.failure-container {
+    transition: all ease-in 0.2s;
+    display: flex;
+    gap: 30px;
     grid-template-rows: repeat(2, 1fr);
-    height: 100%;
+    height: min-content;
     align-items: center;
     justify-content: center;
 }
 
-dialog div.winner-container p.winner-name {
+div.winner-container p.winner-text {
     font-size: 2rem;
     color: rgb(var(--text-color));
 }
 
-dialog div.winner-container p.winner-score::before {
+div.winner-container p.winner-text::after {
+    content: 'won!';
+    margin-left: 8px;
+}
+
+div.winner-container p.winner-score::before {
     content: 'Score:  ';
     font-size: 1.4rem;
     color: rgb(var(--text-color));
 }
 
-dialog div.winner-container p.winner-score {
+div.winner-container p.winner-score {
     font-size: 3.5rem;
     color: rgb(var(--accent-color));
     margin-bottom: 20px;
 }
 
-dialog div.failure-container {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
+main div#log-container div.failure-container {
+    margin-top: 10px;
+    gap: 5px;
 }
 
-dialog div.failure-container p.failure-score::before {
+div.failure-container p.failure-score::before {
     content: 'score: ';
     font-size: 1.4rem;
     color: rgb(var(--text-color));
 }
 
-dialog div.failure-container p.failure-score {
+div.failure-container p.failure-text {
+    font-size: 1.4rem;
+}
+
+div.failure-container p.failure-score {
     font-size: 2rem;
     color: rgb(var(--score-decrease));
     margin-bottom: 5px;
 }
 
-dialog div.button-container {
+div.restart-button-container {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 50px;
 }
 
-dialog div.button-container button {
+div.restart-button-container button {
     font-size: 1.5rem;
     background-color: rgb(var(--score-bonus));
     border: none;
