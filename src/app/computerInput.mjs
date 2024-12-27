@@ -3,6 +3,7 @@ import { computerPlayer, refreshScore } from "./computerGui.mjs";
 import { isPlayerTurn, isPlayerWin } from "./playerInput.mjs";
 import { renderWinner } from "./renderWinner.mjs";
 import { getCords } from "./computer-moves.mjs";
+import { printHighlights } from "./print-highlights.mjs";
 
 function getHitSquare(array, cords) {
     let isFound = false;
@@ -74,6 +75,7 @@ function styleSunkShip() {
             square.classList.add('part-of-sunk-ship')
             square.innerText = '☠'
         })
+        printHighlights(computerPlayer.type);
         realPlayer.gameboard.totalSunkShips += 1;
     }
 }

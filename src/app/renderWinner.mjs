@@ -1,10 +1,12 @@
-
+import { hideLogMessages } from "./print-highlights.mjs";
 
 function renderWinner(realPlayer, isPlayerWin, computerPlayer, isComputerWin) {
     setTimeout(() => {
+        hideLogMessages();
         afterAnimation(realPlayer, isPlayerWin, computerPlayer, isComputerWin);
     }, 500)
 }
+
 
 function afterAnimation(realPlayer, isPlayerWin, computerPlayer) {
     let playerName = realPlayer.name;

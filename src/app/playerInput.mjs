@@ -3,7 +3,7 @@ import { refreshScore, realPlayer } from "./playerGui.mjs";
 import { isComputerWin } from "./computerInput.mjs";
 import { renderWinner } from "./renderWinner.mjs";
 import { hidePlaceButton } from "./place-randomly.mjs";
-
+import { printHighlights } from "./print-highlights.mjs";
 
 function isPlayerTurn(bool = true) {
     return playerTurn = bool;
@@ -59,6 +59,7 @@ function styleSunkShip() {
             square.classList.add('part-of-sunk-ship')
             square.innerText = '☠'
         })
+        printHighlights(realPlayer.type);
         computerPlayer.gameboard.totalSunkShips += 1;
     }
 }
