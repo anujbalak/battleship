@@ -4,30 +4,18 @@ import { computerRun } from "./computerInput.mjs";
 let realPlayer = new Player();
 function playerGui() {
     realPlayer.type = 'real';
-
+    realPlayer.name = 'Anuj'
     let playerLobby = document.createElement('div');
     playerLobby.classList.add('player-lobby');
 
     function renderPlayerName() {
         let playerNameContainer = document.createElement('div');
-        let playerNameInput = document.createElement("input");
+        let playerName = document.createElement("p");
         playerNameContainer.classList.add("player-name-container", "flex-container");
-        playerNameInput.placeholder = 'Enter your name here'
-        realPlayer.name = playerNameInput.value;
-        playerNameInput.autofocus;
-        playerNameInput.addEventListener('keyup', (event) => {
-            if (event.keyCode === 13 || event.code === 13) {
-                playerNameInput.blur();
-                realPlayer.name = playerNameInput.value;
-                const playerName = document.querySelector('p');
-                playerName.classList.add('player-name', "text");
-                playerName.textContent = `${realPlayer.name}'s Board`;
-                localStorage.setItem('playerName', realPlayer.name);
-                playerNameInput.style.display = 'none'
-                playerNameContainer.appendChild(playerName)
-            }
-        })
-        playerNameContainer.appendChild(playerNameInput);
+        playerName.classList.add('player-name');
+        playerName.innerText = `${realPlayer.name}'s Board`
+        
+        playerNameContainer.appendChild(playerName);
         return playerNameContainer;
     }
 
@@ -41,7 +29,6 @@ function playerGui() {
             let cell = document.createElement('span');
             cell.classList.add('cell');
             cell.id = 'cell';
-            // cell.innerText = square
             cell.setAttribute('value', square)
             playerBoard.appendChild(cell);
         });
@@ -86,7 +73,6 @@ function renderPlayerScore(playerLobby) {
     scoreContainer.classList.add('score-container');
     scoreText.classList.add('score-text');
     playerNameNode.classList.add('player-name-node');
-    // let playerLobby = document.querySelector('main div.player-lobby+div');
     playerNameNode.innerText = `Your Score:`;
     scoreText.innerText = score;
     scoreContainer.appendChild(playerNameNode)
@@ -102,8 +88,6 @@ function refreshScore(score, changeInScore, bonusScore) {
         scoreNode.setAttribute('id', '')
         computerRun();
     }, 500);
-
-
 }
 
 function runScoreAnimation(scoreNode, changeInScore, bonusScore) {
