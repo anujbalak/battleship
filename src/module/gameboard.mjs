@@ -15,6 +15,7 @@ class Gameboard {
     this.scoreBonus = 0
     this.isPlace = false;
     this.isAShipSunk = false;
+    this.sunkShips = []
   }
 
   placeShip(length = 0, name) {
@@ -264,6 +265,7 @@ class Gameboard {
 
   sunkShip(ship) {
     if (ship.sunk) {
+      this.sunkShips.push(ship);
       this.isAShipSunk = true;
       this.scoreBonus = 100;
       this.score += 100;
