@@ -1,6 +1,7 @@
 import { realPlayer, renderShips } from "./playerGui.mjs";
 import { activatComputerBoard } from "./computerGui.mjs";
 import { hideShipMenuGui } from "./ship-menu.mjs";
+import { shipNames } from "../ext-files/ship-names.mjs";
 
 
 let randomPlaceContainer = null;
@@ -49,11 +50,11 @@ function removeExistingShips() {
 }
 
 function generateShips() {
-    realPlayer.gameboard.placeShip(5);
-    realPlayer.gameboard.placeShip(4)
-    realPlayer.gameboard.placeShip(3)
-    realPlayer.gameboard.placeShip(3)
-    realPlayer.gameboard.placeShip(2)
+    realPlayer.gameboard.placeShip(5, shipNames[0]);
+    realPlayer.gameboard.placeShip(4, shipNames[1])
+    realPlayer.gameboard.placeShip(3, shipNames[2])
+    realPlayer.gameboard.placeShip(3, shipNames[3])
+    realPlayer.gameboard.placeShip(2, shipNames[4])
 }
 
 function activateComputerBoard() {
