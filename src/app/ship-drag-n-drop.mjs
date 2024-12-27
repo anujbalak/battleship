@@ -6,7 +6,6 @@ import { hidePlaceButton } from "./place-randomly.mjs";
 let grabbedBlock = null;
 let nodeToHide = null;
 let shipPosition = [];
-let arrayOfNodes = []
 
 function dragNDropShips() {
     const shipContainers = document.querySelectorAll('div.ship-menu div#ship-container');
@@ -14,7 +13,7 @@ function dragNDropShips() {
     shipContainers.forEach(container => {
         let shipBlocks = container.childNodes;
         shipSquares.forEach(node => {
-            node.addEventListener('mousedown', (e) => {
+            node.addEventListener('mousedown', () => {
                 for(let i = 0; i <= shipBlocks.length; i++) {
                     if (shipBlocks[i] === node) {
                         return grabbedBlock = i;
@@ -34,12 +33,9 @@ function dragNDropShips() {
 
     
     const board = document.querySelector('main div.player-lobby div#player-board');
-    const boardSquares = document.querySelectorAll('main div.player-lobby div#player-board span.cell')
     board.childNodes.forEach(square => {
         square.addEventListener('dragover', (e) => {
             handleDragOver(e);
-           // console.log(square.getAttribute('value'));
-            
         })
 
         square.addEventListener('dragenter', (e) => {

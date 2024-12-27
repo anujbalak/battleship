@@ -88,8 +88,8 @@ function rotateShips(shipContainer) {
 
 export function hideShipMenuGui() {
     if (rotateInstructionsContainer != null && shipMenu != null) {
-        rotateInstructionsContainer.classList.add('hide');
-        shipMenu.classList.add('hide');
+        rotateInstructionsContainer.style.display = 'none'
+        shipMenu.style.display = 'none'
     }
 }
 

@@ -3,12 +3,12 @@ import { activatComputerBoard } from "./computerGui.mjs";
 import { hideShipMenuGui } from "./ship-menu.mjs";
 
 
-let randomPlaceButton = null;
+let randomPlaceContainer = null;
 function placeRandomly() {
     const shipMenuContaienr = document.querySelector('div.ship-menu-container');
 
-    const randomPlaceContainer = document.createElement('div');
-    randomPlaceButton = document.createElement('button');
+    randomPlaceContainer = document.createElement('div');
+    let randomPlaceButton = document.createElement('button');
 
     randomPlaceContainer.classList.add('random-place-container');
     randomPlaceButton.classList.add('random-place-button');
@@ -63,8 +63,8 @@ function activateComputerBoard() {
 }
 
 export function hidePlaceButton() {
-    if (randomPlaceButton != null) {
-        randomPlaceButton.classList.add('hide');
+    if (randomPlaceContainer != null) {
+        randomPlaceContainer.style.display = 'none'
     }
 }
 
