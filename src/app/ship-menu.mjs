@@ -3,11 +3,12 @@ import { dragNDropShips } from './ship-drag-n-drop.mjs';
 import { placeRandomly } from './place-randomly.mjs';
 import { shipNames } from '../ext-files/ship-names.mjs';
 
+let shipMenuContainer = null
 let rotateInstructionsContainer = null;
 let shipMenu = null
 
 function shipMenuUi() {
-    const shipMenuContainer = document.createElement('div');
+    shipMenuContainer = document.createElement('div');
     rotateInstructionsContainer = document.createElement('div');
     const rotateInstructions = document.createElement('div');
     const rotateButton = document.createElement('input');
@@ -87,9 +88,10 @@ function rotateShips(shipContainer) {
 }
 
 export function hideShipMenuGui() {
-    if (rotateInstructionsContainer != null && shipMenu != null) {
+    if (rotateInstructionsContainer != null && shipMenu != null && shipMenuContainer) {
         rotateInstructionsContainer.style.display = 'none'
         shipMenu.style.display = 'none'
+        shipMenuContainer.id = 'log-container';
     }
 }
 
