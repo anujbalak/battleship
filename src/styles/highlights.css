@@ -25,5 +25,19 @@ div#log-container div.print-container {
 }
 
 div#log-container div.print-container p.message {
+  font-size: 1.2rem;
+}
+
+div#log-container div.print-container:not(:last-child) {
+  opacity: 20%;
+  transform: translate(0, -100%);
+}
+
+div#log-container div.print-container:last-child {
+  transform: translate(0, -40%);
+}
+
+div#log-container div.print-container:last-child p.message {
   font-size: 1.3rem;
+  color: rgb(var(--text-color));
 }
