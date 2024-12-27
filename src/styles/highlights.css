@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@300..700&family=Noto+Sans+Symbols+2&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --r: 40;
+  --g: 40;
+  --b: 66;
+  --text-color: 245, 230, 250;
+  --accent-color: 203, 166, 247;
+  --dark-color: 30, 30, 45;
+  --ship--color: 115, 87, 184;
+  --hover-color: 86, 86, 142;
+  --hit-ship-color: 83, 62, 132;
+  --sunk-ship: 50, 38, 81;
+  --score-text: 159, 120, 255;
+  --score-increase: 125, 255, 199;
+  --score-decrease: 255, 125, 125;
+  --score-bonus: 255, 198, 125;
+}
+
+div#log-container div.print-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+div#log-container div.print-container p.message {
+  font-size: 1.3rem;
+}

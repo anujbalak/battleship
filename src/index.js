@@ -6,7 +6,7 @@ import { battle } from "./app/battle.mjs";
 import { shipMenuUi } from "./app/ship-menu.mjs";
 import style from "./styles/style.css"
 import './styles/ship-menu.css'
-
+import './styles/highlights.css'
 home()
 playerGui()
 computerGui()
