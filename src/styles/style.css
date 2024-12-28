@@ -253,7 +253,7 @@ dialog.dialog:focus {
 
 dialog.dialog div.dialog-body {
     display: grid;
-    grid-template-rows: 50px 1fr 100px;
+    grid-template-rows: 50px 1fr 50px 150px;
     height: 100%;
     align-items: center;
     font-family: "Jost", sans-serif;
@@ -328,6 +328,24 @@ dialog.dialog button.confirm-name-btn:focus, dialog.dialog button.close-dialog-b
     border: none;
 }
 
+dialog.dialog div label.show-again-label {
+    display: flex;
+    gap: 20px;
+    font-style: italic;
+    color: rgb(var(--score-decrease));
+    opacity: 60%;
+    justify-content: center;
+    flex-direction: row-reverse;
+    align-self: first baseline;
+}
+
+dialog.dialog div label.show-again-label:focus, dialog.dialog div label.show-again-label:hover {
+    opacity: 100%;
+}
+
+div label.show-again-label, input.show-again-checkbox {
+    cursor: pointer;
+}
 
 /* ---------------------------------- */
 
