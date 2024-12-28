@@ -43,6 +43,7 @@
     --score-increase: 125, 255, 199;
     --score-decrease: 255, 125, 125;
     --score-bonus: 255, 198, 125;
+    --accent-hover-color: 185, 150, 225;
 }
 
 body {
@@ -105,6 +106,7 @@ main div.player-lobby{
 }
 main div div.player-name-container {
     justify-content: center;
+    grid-row: 1 / 2;
 }
 
 main div div.player-name-container p.player-name {
@@ -233,38 +235,101 @@ footer.footer {
 }
 
 /* ---------------dialogs------------- */
-dialog#winnerDialog {
+dialog.dialog {
     position: absolute;
-    border: none;
-    height: 40%;
+    height: 70%;
     width: 60%;
-    align-content: center;
-    justify-content: center;
     transform: translate(-50%, -50%);
     top: 45%;
     left: 50%;
     background-color: rgb(var(--dark-color));
-}
-
-dialog#winnerDialog:focus {
-    outline: none;
-}
-
-dialog#winnerDialog {
-    display: none;
-    grid-template-rows: 2fr 1fr 1fr;
-    justify-content: center;
-    align-items: center;
-    font-family: "Jost", sans-serif;
-    font-size: 1.4rem;
-    color: rgb(var(--text-color));
     border-radius: 20px;
 }
 
-dialog#winnerDialog::backdrop {
+
+dialog.dialog:focus {
+    outline: none;
+}
+
+dialog.dialog div.dialog-body {
+    display: grid;
+    grid-template-rows: 50px 1fr 100px;
+    height: 100%;
+    align-items: center;
+    font-family: "Jost", sans-serif;
+    font-size: 1.2rem;
+    color: rgb(var(--text-color));
+   
+
+}
+dialog.dialog {
+    border: 5px solid rgb(78, 78, 87);
+    box-shadow: 0 0 0px 10px rgb(var(--dark-color));
+}
+
+dialog.dialog::backdrop {
     backdrop-filter: grayscale(60%);
     filter: blur(10px);
 }
+
+
+
+dialog.dialog label.player-name-input-label {
+    width: 50%;
+    justify-self: center;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+dialog.dialog input.player-name-input {
+    border: solid 2px rgb(var(--accent-color));
+    font-size: 1.3rem;
+    cursor: text;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: "Jost", sans-serif;
+    background-color: rgb(34, 34, 62);
+}
+
+dialog.dialog button.confirm-name-btn,dialog.dialog button.close-dialog-btn  {
+    justify-self: center;
+    font-size: 1.3rem;
+    padding: 5px 15px;
+    border: none;
+    font-weight: 600;
+    border-radius: 10px;
+    font-family: "Jost", sans-serif;
+    background-color: rgb(var(--accent-color));
+    border-bottom: 6px solid rgb(var(--ship--color));
+}
+
+dialog.dialog button.confirm-name-btn {
+    align-self: first baseline;
+    padding: 10px 20px;
+}
+
+dialog.dialog button.close-dialog-btn {
+    justify-self: end;
+    font-weight: normal;
+    border-radius: 7px;
+    display: block;
+    margin: 5px 5px 0 0;
+}
+
+
+dialog.dialog button.confirm-name-btn:hover, dialog.dialog button.close-dialog-btn:hover {
+    background-color: rgb(var(--accent-hover-color));
+}
+
+
+
+dialog.dialog button.confirm-name-btn:focus, dialog.dialog button.close-dialog-btn:focus {
+    border: none;
+}
+
+
+/* ---------------------------------- */
 
 div.ship-menu-container div.winner-container, div#log-container div.failure-container {
     transition: all ease-in 0.2s;

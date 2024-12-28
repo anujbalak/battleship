@@ -1,24 +1,13 @@
 import { Player } from "../module/player.mjs";
 import { computerRun } from "./computerInput.mjs";
+import { playerNameInput } from "./playerNameInput.mjs";
 
 let realPlayer = new Player();
 function playerGui() {
+    playerNameInput(realPlayer)
     realPlayer.type = 'real';
-    realPlayer.name = 'Anuj'
     let playerLobby = document.createElement('div');
     playerLobby.classList.add('player-lobby');
-
-    function renderPlayerName() {
-        let playerNameContainer = document.createElement('div');
-        let playerName = document.createElement("p");
-        playerNameContainer.classList.add("player-name-container", "flex-container");
-        playerName.classList.add('player-name');
-        playerName.innerText = `${realPlayer.name}'s Board`
-        
-        playerNameContainer.appendChild(playerName);
-        return playerNameContainer;
-    }
-
 
     function renderPlayerBoard(squares) {
         let playerBoard = document.createElement('div');
@@ -36,11 +25,9 @@ function playerGui() {
         return playerBoard;
     }
 
-    let playerName = renderPlayerName();
     realPlayer.setBoard()
     let playerBoard = renderPlayerBoard(realPlayer.gameboard.board)
 
-    playerLobby.appendChild(playerName);
     playerLobby.appendChild(playerBoard);
 
     const MAIN_AREA = document.querySelector('main');
@@ -50,6 +37,17 @@ function playerGui() {
     // renderShips(realPlayer.gameboard.ships)
     // console.log(realPlayer.gameboard.ships)
     
+}
+
+export function renderPlayerName(name) {
+    let playerNameContainer = document.createElement('div');
+    let playerName = document.createElement("p");
+    playerNameContainer.classList.add("player-name-container", "flex-container");
+    playerName.classList.add('player-name');
+    playerName.innerText = `${name}'s Board`
+    playerNameContainer.appendChild(playerName);
+    const playerLobby = document.querySelector('main div.player-lobby') 
+    playerLobby.appendChild(playerNameContainer)
 }
 
 export function renderShips() {
