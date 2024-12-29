@@ -12,7 +12,7 @@ function placeRandomly() {
     let randomPlaceButton = document.createElement('button');
 
     randomPlaceContainer.classList.add('random-place-container');
-    randomPlaceButton.classList.add('random-place-button');
+    randomPlaceButton.classList.add('random-place-button', 'button');
 
     randomPlaceButton.innerText = 'Place randomly'
 
@@ -40,9 +40,10 @@ function styleButton(btn) {
     btn.classList.add('clicked')
     btn.innerText = 'placed'
     setTimeout(() => {
+        btn.classList.remove('button')
         btn.classList.remove('clicked');
         btn.innerText = 'Place randomly'
-    }, 500)
+    }, 200)
 }
 
 function removeExistingShips() {

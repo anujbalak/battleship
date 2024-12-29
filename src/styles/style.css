@@ -292,60 +292,6 @@ dialog.dialog input.player-name-input {
     background-color: rgb(34, 34, 62);
 }
 
-dialog.dialog button.confirm-name-btn,dialog.dialog button.close-dialog-btn  {
-    justify-self: center;
-    font-size: 1.3rem;
-    padding: 5px 15px;
-    border: none;
-    font-weight: 600;
-    border-radius: 10px;
-    font-family: "Jost", sans-serif;
-    background-color: rgb(var(--accent-color));
-    border-bottom: 6px solid rgb(var(--ship--color));
-}
-
-dialog.dialog button.confirm-name-btn {
-    align-self: first baseline;
-    padding: 10px 20px;
-}
-
-dialog.dialog button.close-dialog-btn {
-    justify-self: end;
-    font-weight: normal;
-    border-radius: 7px;
-    display: block;
-    margin: 5px 5px 0 0;
-}
-
-
-dialog.dialog button.confirm-name-btn:hover, dialog.dialog button.close-dialog-btn:hover {
-    background-color: rgb(var(--accent-hover-color));
-}
-
-
-
-dialog.dialog button.confirm-name-btn:focus, dialog.dialog button.close-dialog-btn:focus {
-    border: none;
-}
-
-dialog.dialog div label.show-again-label {
-    display: flex;
-    gap: 20px;
-    font-style: italic;
-    color: rgb(var(--score-decrease));
-    opacity: 60%;
-    justify-content: center;
-    flex-direction: row-reverse;
-    align-self: first baseline;
-}
-
-dialog.dialog div label.show-again-label:focus, dialog.dialog div label.show-again-label:hover {
-    opacity: 100%;
-}
-
-div label.show-again-label, input.show-again-checkbox {
-    cursor: pointer;
-}
 
 /* ---------------------------------- */
 
@@ -409,17 +355,105 @@ div.restart-button-container {
     gap: 50px;
 }
 
-div.restart-button-container button {
-    font-size: 1.5rem;
-    background-color: rgb(var(--score-bonus));
+/* ------------chcekbox---------------- */
+
+dialog.dialog div label.show-again-label {
+  font-family: 'Jost', sans-serif;
+}
+
+dialog.dialog div label.show-again-label {
+    justify-self: center;
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 0.5em;    
+    opacity: 50%;
+    align-items: center;
+}
+
+label.show-again-label + label.show-again-label {
+    margin-top: 1em;
+}
+
+dialog.dialog div label.show-again-label:focus, dialog.dialog div label.show-again-label:hover {
+    opacity: 100%;
+}
+
+div label.show-again-label input[type='checkbox'] {
+    margin: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    font: inherit;
+    width: 1.1em;
+    height: 1.1em;
+    border: 0.15em solid rgb(var(--accent-color));
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+}
+
+div label.show-again-label input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--form-control-color);
+    background-color: rgb(var(--accent-color));
+}
+
+
+div label.show-again-label input[type="checkbox"]:checked::before {
+    transform: scale(1);
+    transform-origin: bottom left;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+
+label.show-again-label p.show-again-text {
+    color: rgb(var(--score-decrease));
+    font-style: italic;
+}
+
+/* ------------button------------------ */
+button.button, button.random-place-button {
+    justify-self: center;
+    font-size: 1.3rem;
+    padding: 5px 15px;
     border: none;
-    padding: 5px 0.6em;
+    font-weight: 600;
     border-radius: 10px;
-    font-family: "Jest", sans-serif;
+    font-family: "Jost", sans-serif;
+    background-color: rgb(var(--accent-color));
+    border-bottom: 6px solid rgb(var(--ship--color));
 }
 
-dialog div.button-container button:focus, dialog div.button-container button:hover {
-    box-shadow: 0px 0px 0px 2px rgb(var(--text-color));
+button.confirm-name-btn {
+    align-self: first baseline;
+    padding: 10px 20px;
+}
+
+dialog div button.close-dialog-btn {
+    justify-self: end;
+    font-weight: normal;
+    border-radius: 7px;
+    display: block;
+    margin: 5px 5px 0 0;
 }
 
 
+button.button:hover {
+    background-color: rgb(var(--accent-hover-color));
+}
+
+button.button:focus {
+    border: none;
+    transform: translateY(10%);
+}
+
+div.random-place-container button.clicked {
+    border-bottom: 6px solid rgb(var(--ship--color));
+    border: none;
+    transform: translateY(10%);
+}

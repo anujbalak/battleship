@@ -11,18 +11,22 @@ function dialogGui(player) {
     const playerNameInputLabel = document.createElement('label');
     const playerNameInput = document.createElement('input');
     const confirmButton = document.createElement('button');
-
+    
     const showAgainlabel = document.createElement('label')
+    const showAgainText = document.createElement('p');
     const showAgainCheckbox = document.createElement('input')
 
     dialog.className = 'dialog';
     dialogBody.className = 'dialog-body'
     closeButton.className = 'close-dialog-btn';
+    closeButton.classList.add('button')
     playerNameInputLabel.className = 'player-name-input-label';
     playerNameInput.className = 'player-name-input';
     confirmButton.className = 'confirm-name-btn'
+    confirmButton.classList.add('button')
     showAgainlabel.className = 'show-again-label';
     showAgainCheckbox.className = 'show-again-checkbox';
+    showAgainText.className = 'show-again-text'
 
     closeButton.autofocus;
     showAgainCheckbox.id = 'show-again'
@@ -31,9 +35,9 @@ function dialogGui(player) {
     closeButton.innerText = '✖'
     confirmButton.innerText = 'Confirm'
 
-    showAgainlabel.innerText = "Don't show again"
+    showAgainText.innerText = "Remember me"
 
-    showDialog(dialog)
+    showDialog(dialog, player)
     closeDialog(dialog, closeButton, player, showAgainCheckbox);
     dialog.appendChild(dialogBody)
     dialogBody.appendChild(closeButton);
@@ -41,19 +45,20 @@ function dialogGui(player) {
     playerNameInputLabel.appendChild(playerNameInput)
     dialogBody.appendChild(showAgainlabel)
     showAgainlabel.appendChild(showAgainCheckbox)
+    showAgainlabel.appendChild(showAgainText)
     dialogBody.appendChild(confirmButton)
     document.body.appendChild(dialog);
     getName(player, playerNameInput, confirmButton, dialog, showAgainCheckbox)
 }
 
-function showDialog(dialog) {
+function showDialog(dialog, player) {
     window.onload = function() {
         let showAgain = JSON.parse(localStorage.getItem('showAgain'));
         if (showAgain === true || showAgain === null) {
             return dialog.showModal()
         }
         let playerName = localStorage.getItem('playerName');
-        renderPlayerName(playerName);
+        setPlayerName(playerName, player);
     }
 }
 
@@ -69,16 +74,16 @@ function getName(player, input, confirmBtn, dialog, checkbox) {
     confirmBtn.addEventListener('click', () => {
         name = input.value;
         dialog.close();
-        setPlayerName(name, player, checkbox)
+        checkShowAgain(checkbox, name)
+        setPlayerName(name, player)
     })
 }
 
-function setPlayerName(name, player, checkbox) {
+function setPlayerName(name, player) {
     if (name === '' || name.length === 0 || name === null || name === undefined) {
         name = 'Player'
     }
     player.name = name;
-    checkShowAgain(checkbox, name)
     renderPlayerName(name)
 }
 
