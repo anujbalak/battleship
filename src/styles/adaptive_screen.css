@@ -6,7 +6,7 @@
 @media only screen and (max-width: 900px) {
   main {
     grid-template-columns: 1fr;
-    grid-template-rows: minmax(100px, 100%) 1fr 1fr;
+    grid-template-rows: 1fr minmax(100px, 100%) 1fr;
   }
 
   main div.player-lobby {
@@ -16,7 +16,7 @@
   }
 
   main div.ship-menu-container {
-    grid-row: 1 / 2;
+    grid-row: 2 / 3;
     display: flex;
     align-self: center;
     grid-column: 1 / 2;
@@ -41,12 +41,8 @@
   }
 
   div#log-container div.print-container:last-child p.message {
-    font-size: 1rem;
+    font-size: 1.15rem;
     color: rgb(var(--text-color));
-  }
-
-  main div#log-container div.print-container p.message {
-    font-size: 1rem;
   }
 
   div#log-container div.print-container:not(:last-child) {
