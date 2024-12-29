@@ -22,6 +22,7 @@ function afterAnimation(realPlayer, isPlayerWin, computerPlayer) {
         winner(computerName, computerScore, shipMenuContainer)
         failure(playerName, playerScore, shipMenuContainer)
     }
+    restartBtn(shipMenuContainer)
 }
 
 function winner(name, score, container) {
@@ -58,6 +59,22 @@ function failure(name, score, container) {
     container.appendChild(failureContainer);
 }
 
+function restartBtn(container) {
+    const restartBtnContainer = document.createElement('div');
+    const restartButton = document.createElement('button');
 
+    restartBtnContainer.classList.add('restart-button-container');
+    restartButton.className = 'button';
+    restartButton.innerText = 'Restart'
+    restartBtnContainer.appendChild(restartButton);
+    container.appendChild(restartBtnContainer);
+    restart(restartButton);
+} 
+
+function restart(btn) {
+    btn.addEventListener('click', () => {
+        window.location.reload();
+    })
+}
 
 export { renderWinner }
