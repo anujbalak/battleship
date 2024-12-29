@@ -1,6 +1,6 @@
-import { playerRun  } from "./playerInput.mjs";
+import { playerRun } from "./playerInput.mjs";
 function battle() {
-    playerRun()
+  playerRun();
 }
 
 export { battle };

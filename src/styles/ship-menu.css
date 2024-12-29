@@ -1,23 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@300..700&family=Noto+Sans+Symbols+2&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@300..700&family=Noto+Sans+Symbols+2&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
-    --r: 40;
-    --g: 40;
-    --b: 66;
-    --text-color: 245, 230, 250;
-    --accent-color: 203, 166, 247;
-    --dark-color: 30, 30, 45;
-    --ship--color: 115, 87, 184;
-    --hover-color: 86, 86, 142;
-    --hit-ship-color: 83, 62, 132;
-    --sunk-ship: 50, 38, 81;
-    --score-text: 159, 120, 255;
-    --score-increase: 125, 255, 199;
-    --score-decrease: 255, 125, 125;
-    --score-bonus: 255, 198, 125;
+  --r: 40;
+  --g: 40;
+  --b: 66;
+  --text-color: 245, 230, 250;
+  --accent-color: 203, 166, 247;
+  --dark-color: 30, 30, 45;
+  --ship--color: 115, 87, 184;
+  --hover-color: 86, 86, 142;
+  --hit-ship-color: 83, 62, 132;
+  --sunk-ship: 50, 38, 81;
+  --score-text: 159, 120, 255;
+  --score-increase: 125, 255, 199;
+  --score-decrease: 255, 125, 125;
+  --score-bonus: 255, 198, 125;
 }
 
 main div.ship-menu-container {
@@ -41,59 +40,58 @@ main div#log-container {
 }
 
 div.rotate-instructions-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 div.rotate-instructions-container div.rotate-instructions {
-    font-size: 1.1rem;
+  font-size: 1.1rem;
 }
 
 /* ---------------toggle button---------------- */
 .switch {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 20px;
-    background-color: rgb(var(--ship--color));
-    border-radius: 20px;
-    transition: all 0.3s;
-  }
-  .switch::after {
-    content: '';
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    border-radius:50%;
-    background-color: rgb(var(--text-color));
-    top: 1px;
-    left: 1px;
-    transition: all 0.3s;
-  }
-  
-  .checkbox:checked + .switch::after {
-    left : 20px;
-  }
-  .checkbox:checked + .switch {
-    background-color: rgb(var(--accent-color));
-  }
-  .checkbox {
-    display : none;
-  }
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  background-color: rgb(var(--ship--color));
+  border-radius: 20px;
+  transition: all 0.3s;
+}
+.switch::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: rgb(var(--text-color));
+  top: 1px;
+  left: 1px;
+  transition: all 0.3s;
+}
 
+.checkbox:checked + .switch::after {
+  left: 20px;
+}
+.checkbox:checked + .switch {
+  background-color: rgb(var(--accent-color));
+}
+.checkbox {
+  display: none;
+}
 
 /* ------------------------------------ */
 
 main div.ship-menu-container div.ship-menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    margin: 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin: 0 20px;
 }
 
 div.ship-menu div.ship-container {
@@ -103,18 +101,19 @@ div.ship-menu div.ship-container {
   border-right: 1px rgb(var(--accent-color)) solid;
 }
 
-div.ship-menu div#selected-ship[value='v'] {
+div.ship-menu div#selected-ship[value="v"] {
   flex-direction: column-reverse;
 }
-div.ship-menu div#selected-ship[value='h'] {
+div.ship-menu div#selected-ship[value="h"] {
   flex-direction: row;
 }
 
-div.ship-menu div#selected-ship[value='v'] span.ship-square {
+div.ship-menu div#selected-ship[value="v"] span.ship-square {
   border-left: 1px rgb(var(--accent-color)) solid;
 }
 
-div.ship-menu div.ship-container:focus, div.ship-menu div.ship-container:hover {
+div.ship-menu div.ship-container:focus,
+div.ship-menu div.ship-container:hover {
   cursor: grab;
 }
 
@@ -123,7 +122,7 @@ div.ship-menu div#selected-ship {
   border-width: 1px;
 }
 
-div.ship-menu div#selected-ship>span.ship-square {
+div.ship-menu div#selected-ship > span.ship-square {
   border-left: 1px rgb(var(--accent-color)) solid;
 }
 
@@ -133,21 +132,21 @@ div.ship-menu div#selected-ship span.ship-square {
 }
 
 main div.ship-menu-container div.ship-menu div.ship-container span.ship-square {
-    height: fit-content;
-    padding: 3px;
-    border-right: 1px rgb(var(--accent-color)) solid;
-    /* border-bottom: 1px rgb(var(--accent-color)) solid; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: fit-content;
+  padding: 3px;
+  border-right: 1px rgb(var(--accent-color)) solid;
+  /* border-bottom: 1px rgb(var(--accent-color)) solid; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 div.ship-menu div.ship-container span.ship-square {
-    font-size: 1.5rem;
-    font-family: 'Noto Emoji', sans-serif;
-    background-color: rgb(var(--ship--color));
-    font-weight: 700;
-    color: #eee;
+  font-size: 1.5rem;
+  font-family: "Noto Emoji", sans-serif;
+  background-color: rgb(var(--ship--color));
+  font-weight: 700;
+  color: #eee;
 }
 
 /* -----------------------drag n drop----------- */
@@ -174,9 +173,8 @@ div.random-place-container {
 }
 
 div.random-place-container button.random-place-button {
-
 }
 
 div.hide * {
-  display: none;;
+  display: none;
 }

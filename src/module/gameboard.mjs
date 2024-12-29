@@ -5,17 +5,17 @@ class Gameboard {
     this.board = generateBoard();
     this.ships = [];
     this.missed = [];
-    this.firedSquares = []
+    this.firedSquares = [];
     this.isHit = false;
     this.hitCords = null;
     this.sunkShipsPosition = [];
     this.totalSunkShips = 0;
-    this.score = 0
-    this.changeInScore = 0
-    this.scoreBonus = 0
+    this.score = 0;
+    this.changeInScore = 0;
+    this.scoreBonus = 0;
     this.isPlace = false;
     this.isAShipSunk = false;
-    this.sunkShips = []
+    this.sunkShips = [];
   }
 
   placeShip(length = 0, name) {
@@ -36,56 +36,55 @@ class Gameboard {
     return;
   }
 
-
   isAlreadyGenerated(receiveCords) {
     let x = receiveCords[0];
     let y = receiveCords[1];
     let isPlaced = false;
-    let generatedShipCords = []
+    let generatedShipCords = [];
 
-    this.ships.forEach(ship => {
-      ship.position.forEach(cords => {
+    this.ships.forEach((ship) => {
+      ship.position.forEach((cords) => {
         generatedShipCords.push(cords);
-      })
-    })
-    for(let i = 0; i < generatedShipCords.length && isPlaced === false; i++) {
+      });
+    });
+    for (let i = 0; i < generatedShipCords.length && isPlaced === false; i++) {
       let currentSquare = generatedShipCords[i];
-      if (currentSquare[0] === x && currentSquare[1]=== y) {
-        return isPlaced = true;
+      if (currentSquare[0] === x && currentSquare[1] === y) {
+        return (isPlaced = true);
       }
     }
     return isPlaced;
   }
 
-
-
-  generateShipPosition(lengthOfShip) { 
-    let position = []
+  generateShipPosition(lengthOfShip) {
+    let position = [];
 
     const generateX = () => {
       return Math.floor(Math.random() * 10);
-    }
+    };
 
     const generateY = () => {
       return Math.floor(Math.random() * 10);
-    }
+    };
 
     const generateSubtractor = () => {
-      return Math.floor((Math.random() * 5) + 1);
-    }
+      return Math.floor(Math.random() * 5 + 1);
+    };
     /// H => 0, V => 1;
     const generateShipDirection = () => {
       return Math.floor(Math.random() * 2);
-    }
+    };
 
-    let generatedX = generateX() ;
+    let generatedX = generateX();
     let generatedY = generateY();
     let direction = generateShipDirection();
 
     const getXorY = (generatedNumber) => {
-      let a = generatedNumber - (generatedNumber - ((10 - lengthOfShip) - generateSubtractor()));
+      let a =
+        generatedNumber -
+        (generatedNumber - (10 - lengthOfShip - generateSubtractor()));
       return a;
-    }
+    };
 
     const generateCords = (direction, lengthOfShip) => {
       let x = null;
@@ -94,21 +93,21 @@ class Gameboard {
         if (generatedX > 5) {
           x = getXorY(generatedX);
         } else {
-          x = generatedX
+          x = generatedX;
         }
         y = generatedY;
-        return generatePosition(x, y, direction, lengthOfShip)
+        return generatePosition(x, y, direction, lengthOfShip);
       } else if (direction === 1) {
         if (generatedY > 5) {
           y = getXorY(generatedY);
         } else {
-          y = generatedY
+          y = generatedY;
         }
         x = generatedX;
         return generatePosition(x, y, direction, lengthOfShip);
       }
-    }
-    
+    };
+
     const generatePosition = (x, y, direction, length) => {
       let cord = [x, y];
       let i = length - 1;
@@ -116,17 +115,17 @@ class Gameboard {
       while (i > 0) {
         if (direction === 0) {
           cord = [x + length - i, y];
-          position.push(cord)
+          position.push(cord);
         } else if (direction === 1) {
           cord = [x, y + length - i];
-          position.push(cord)
+          position.push(cord);
         }
         i--;
-      };
+      }
       return position;
-    }
+    };
     let isGenerated = false;
-    generateCords(direction, lengthOfShip)
+    generateCords(direction, lengthOfShip);
     if (lengthOfShip === 5) return position;
     if (lengthOfShip < 5) {
       for (let i = 0; i < position.length && isGenerated === false; i++) {
@@ -139,11 +138,10 @@ class Gameboard {
     if (isGenerated) {
       return this.generateShipPosition(lengthOfShip);
     } else {
-      return position
+      return position;
     }
   }
 
-  
   placeShipPre() {
     let carrier = new Ship();
     carrier.length = 5;
@@ -222,7 +220,7 @@ class Gameboard {
           this.changeInScore = 5;
           this.score -= 5;
         } else {
-          this.changeInScore = 0
+          this.changeInScore = 0;
         }
         this.missed.push(recievedCords);
       }
@@ -254,10 +252,10 @@ class Gameboard {
     let y = receiveCords[1];
     let isShot = false;
     let firedShots = this.firedSquares;
-    for(let i = 0; i < firedShots.length && isShot === false; i++) {
+    for (let i = 0; i < firedShots.length && isShot === false; i++) {
       let currentSquare = firedShots[i];
-      if (currentSquare[0] === x && currentSquare[1]=== y) {
-        return isShot = true;
+      if (currentSquare[0] === x && currentSquare[1] === y) {
+        return (isShot = true);
       }
     }
     return isShot;
@@ -276,14 +274,14 @@ class Gameboard {
   }
 
   areAllShipsPlace() {
-    if (this.ships.every(ship => ship.isPlace === true)) {
-        return true;
+    if (this.ships.every((ship) => ship.isPlace === true)) {
+      return true;
     }
     return false;
   }
 
   removeAllShips() {
-    return this.ships = []
+    return (this.ships = []);
   }
 }
 
@@ -294,7 +292,7 @@ function generateBoard() {
   let y = 9;
   let board = [];
   while (y >= n) {
-    while (x < k ) {
+    while (x < k) {
       board.push([x, y]);
       x++;
     }
